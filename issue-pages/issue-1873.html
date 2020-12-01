@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>entry-metadata: treatment of &lt;del&gt;</title>
+   </head>
+   <body>
+      <h1>1873: entry-metadata: treatment of &lt;del&gt;</h1>
+      <div>
+         <p>For each heading, we have been just stripping `&lt;del&gt;` tags and displaying their
+            text along with the rest of the heading.&#xD; &#xD; NEW request: remove all words within
+            `&lt;del&gt;` tags so that we are left with "clean" headings for
+            entry-metadata.&#xD; &#xD; ## E.g., Currently, list of entries has:&#xD;
+            ![image](https://user-images.githubusercontent.com/14779727/90686980-2120ce00-e23a-11ea-8d60-2f4db9b95570.png)&#xD;
+            &#xD; ## For the heading:&#xD;
+            ![image](https://user-images.githubusercontent.com/14779727/90687029-34339e00-e23a-11ea-8982-8c40f1b0f8d0.png)&#xD;
+            &#xD; ## **DESIRED**: change "Pour ga cach cages" to "Pour cages"
+            across all 3 versions (tc, tcn, tl)&#xD; </p>
+      </div>
+   </body>
+</html>

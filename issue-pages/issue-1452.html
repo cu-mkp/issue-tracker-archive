@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>duplicate divs with ids (entries) lacking heads without &lt;cont&gt;</title>
+   </head>
+   <body>
+      <h1>1452: duplicate divs with ids (entries) lacking heads without &lt;cont&gt;</h1>
+      <div>
+         <p>These are being treated as entries without heads&#xD; If continueds are put in, it
+            will resolve the problem but introduce continues/continued in rendering&#xD; &#xD;
+            e.g.,&#xD;
+            https://github.com/cu-mkp/m-k-manuscript-data/blob/429227a44e30a6292c2db5d766cf593cfeec73c2/ms-xml/tc/tc_p001r_preTEI.xml#L209&#xD;
+            &#xD; xpath query&#xD; &gt;
+            //div[@id][not(head)][not(@continues)][not(@continued)]</p>
+      </div>
+   </body>
+</html>

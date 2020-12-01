@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>162r divs with no ids</title>
+   </head>
+   <body>
+      <h1>1921: 162r divs with no ids</h1>
+      <div>
+         <p>opened from #1696:&#xD; There is content on 162r that are in divs with no ids (these
+            are ignored by manuscript-object). Markup needs to be reviewed here.&#xD; &#xD; &#xD; We
+            (@tcatapano and @gschare and @njr2128) have identified the larger issue here: it is
+            a
+            content/editorial problem, NOT a coding or a parsing problem. We believe that in order
+            to better align the marginal emphs with their corresponding main text, three divs
+            were
+            introduced so that it was broken up, see:&#xD;
+            https://github.com/cu-mkp/m-k-manuscript-data/blob/2e720fd443866a21322eb7c395dbfd5232f039a7/ms-xml/tc/tc_p162r_preTEI.xml#L30-L63&#xD;
+            &#xD;
+            ![image](https://user-images.githubusercontent.com/14779727/91498523-e64c1500-e88d-11ea-9513-d119a04a1a72.png)&#xD;
+            &#xD; ## problem: &#xD; because the first div of `&lt;div id="p162r_1"&gt;`
+            has now been closed in order to open the new divs that separate the emphs, these text
+            blocks are now no longer associated with any entry (and have no div id). However,
+            because they semantically belong to p162r_1, the text of this folio has changed in
+            meaning. We have essentially said that these blocks of text do not belong with any
+            other
+            text and are not distinct entries themselves, which goes against our encoding policies.
+            Normally, these would have "part" attributes.&#xD; &#xD; Downstream
+            consequences other than meaning include entry-metadata extraction and entries-txt
+            and
+            entries-xml (the text inside the unassigned divs is completely **omitted**). &#xD; &#xD;
+            In order to remedy this, we need to understand why these additional divs are in place
+            and why the "part" attribute is not used. We think it is because of rendering
+            solutions put in place by @thuchacz. Can you confirm, @thuchacz? Otherwise, I will
+            try
+            to add "part" tags and see what happens to the rendering in edition-dev and
+            then consult with PHS.</p>
+      </div>
+   </body>
+</html>

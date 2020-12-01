@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>model for entry category info in schema</title>
+   </head>
+   <body>
+      <h1>1085: model for entry category info in schema</h1>
+      <div>
+         <p>related to #819, integrating entry terms into the markup, I see at least 3
+            options:&#xD; &#xD; 1. a category attribute with multiple values separated by pipes&#xD;
+            &#xD; ```&#xD; &lt;div id="p005r_1" category="casting|metal
+            process|practical optics" &gt;&#xD; ```&#xD; &#xD; 2. a category1, category2 annd
+            category3 attributes each with a single value&#xD; &#xD; ```&#xD; &lt;div
+            id="p005r_1" category1="casting" category2="metal process"
+            category3="practical optics" &gt;&#xD; ```&#xD; 3. repeatable empty
+            &lt;category&gt; child elements with value attributes containing a single category
+            term&#xD; &#xD; ```&#xD; &lt;div id="p005r_1"&gt;&#xD; &lt;category
+            term="casting"/&gt;&#xD; &lt;category term="metal process"/&gt;&#xD;
+            &lt;category term="practical optics"/&gt;&#xD; &#xD; ```&#xD; &#xD;
+            @NickLaiacona do you have any preferences?</p>
+      </div>
+   </body>
+</html>

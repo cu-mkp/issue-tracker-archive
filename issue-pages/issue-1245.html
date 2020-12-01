@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>create search functionality explanation</title>
+   </head>
+   <body>
+      <h1>1245: create search functionality explanation</h1>
+      <div>
+         <p>Based on:&#xD; &#xD; **FROM NICK**&#xD; Summary of new search features:&#xD; The
+            search system now looks for entries which contain all of the terms entered into the
+            search bar. If the terms are enclosed in quotes, the terms will be treated as a phrase.
+            Only entries containing the entire phrase will be matched. Search results can now
+            be
+            ordered by folio ID or relevance. Also, the search system no longer attempts to stem
+            text. This means that it will only match terms that are pluralized and conjugated
+            the
+            same as the search term. Lastly, "stop words" have been eliminated, so common
+            words will now match (the, or, etc.)&#xD; &#xD; **Notes from NJR**&#xD; AND searches
+            implemented&#xD; &gt;Burnt and lead&#xD; &#xD; Phrase search&#xD; &gt;“Burnt lead”&#xD;
+            &#xD; EDGE CASES&#xD; &gt;“Or couleur = phrase search&#xD; &gt;Or couleur” = AND
+            search&#xD; &gt;The “gold leaf” = AND search for “the” with phrase search of “gold
+            leaf”&#xD; &#xD; Stop words eliminated&#xD; &gt;Or&#xD; &#xD; Stemmers in use&#xD;
+            &gt;Guard &#xD; &gt;Guards &#xD; &gt; —&gt; Return different results&#xD; &gt;No way to
+            return both&#xD; &gt;Search of [guards guard] will only return entries that have BOTH
+            these words (AND not OR)&#xD; &#xD; Special characters cannot be searched for (including
+            alchemical symbols)&#xD; &gt;Work-around: list occurrences in the separate resource
+            dedicated to them&#xD; &#xD; &#xD; </p>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>120v and &lt;rub&gt; &lt;man&gt; issues</title>
+   </head>
+   <body>
+      <h1>529: 120v and &lt;rub&gt; &lt;man&gt; issues</h1>
+      <div>
+         <p>After the main text of 120v_3, we get this:&#xD; ```&#xD; &lt;rub&gt;See&lt;/rub&gt;
+            the second leaf following.&#xD; &#xD; &lt;ab&gt;&lt;man&gt;&#xD;
+            &lt;margin&gt;left-middle&lt;/margin&gt;&lt;del&gt;&#xD; Doubtful&#xD;
+            &lt;corr&gt;question&lt;/corr&gt;&lt;/del&gt;&lt;/man&gt;&lt;comment&gt;c_120v_07&lt;/comment&gt;&lt;/ab&gt;&#xD;
+            ```&#xD; The `&lt;man&gt;` block is rendering, but not in the margin, as its margin
+            location tag should indicate. And the markup for `&lt;rub&gt;` leaves "the second
+            leaf following" in no block beyond the overarching `&lt;div&gt;`, and neither the
+            text between the `&lt;rub&gt;` tags nor the text following is rendering at all. Surely,
+            this can't be how `&lt;rub&gt;` works. Or is it?</p>
+      </div>
+   </body>
+</html>

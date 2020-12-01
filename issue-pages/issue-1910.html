@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>entry-metadata not encoding character entities</title>
+   </head>
+   <body>
+      <h1>1910: entry-metadata not encoding character entities</h1>
+      <div>
+         <p>&amp; (and maybe others?) showing up as character entity and not as literal
+            character&#xD; &#xD; For example, the heading of 4v_1:&#xD;
+            https://github.com/cu-mkp/m-k-manuscript-data/blob/4625a7ad236f37bca47f4bdc27fcd536e89bcbb0/ms-xml/tl/tl_p004v_preTEI.xml#L8-L9&#xD;
+            is returned as&#xD; &gt; Black varnish for sword guard, bands for trunks,
+            `&amp;amp;`c&#xD; &#xD; It should be&#xD; &gt; Black varnish for sword guard, bands for
+            trunks, &amp;c&#xD; </p>
+      </div>
+   </body>
+</html>

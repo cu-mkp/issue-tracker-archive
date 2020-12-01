@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>editorial comment for 14v blank page</title>
+   </head>
+   <body>
+      <h1>1739: editorial comment for 14v blank page</h1>
+      <div>
+         <p>We have no good way to indicate to a user that 14v is a blank page. It currently
+            renders as if there is an error (lizard image):&#xD;
+            ![image](https://user-images.githubusercontent.com/14779727/87572074-025a7500-c699-11ea-8cda-9eafc1f280a3.png)&#xD;
+            &#xD; To work within our current render scheme, best option has been determined to be
+            the addition of a comment anchor that tells the user this is a blank page in the
+            original.&#xD; &#xD; i.e., add the following to the xml files:&#xD;
+            `&lt;ab&gt;&lt;comment&gt;&lt;/ab&gt;`&#xD; &#xD; and create a new comment anchor with
+            info about blank page.&#xD; &#xD; --&gt; this will then render as a red asterisk that,
+            when clicked, opens dialogue box with comment about blank page</p>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>entry-metadata missing values</title>
+   </head>
+   <body>
+      <h1>1726: entry-metadata missing values</h1>
+      <div>
+         <p>While reviewing values in
+            https://github.com/cu-mkp/m-k-manuscript-data/blob/master/metadata/entry_metadata.csv,
+            we discovered a few issues that have resulted in missing or modified values of tagged
+            terms.&#xD; &#xD; ## To summarize the desired spec: &#xD; For each semantic tag type
+            (al, bp, m, ms, tl, etc.), populate a cell with every verbatim term per entry. This
+            is
+            NOT unique terms, but every term (e.g., if a phrase is repeated verbatim, include
+            it as
+            many times as it appears). Create one cell each for tc, tcn, and tl per tag (i.e.,
+            tc_m,
+            tcn_m, tl_m for m (material)).&#xD; &#xD; ## missing and clipped values&#xD; Use div id
+            005r_2 as a test case. Entry-xml here:
+            https://github.com/cu-mkp/m-k-manuscript-data/blob/master/entries/xml/tl/tl_005r_2.xml&#xD;
+            &#xD; Current values for bp (body part) are:&#xD; &#xD; bp_tc | bp_tcn | bp_tl&#xD; -- |
+            -- | --&#xD; visaige; teston; lieulx secrets; poil de la barbe; doigt; petit doigt |
+            visaige; teston; lieulx secrets; poil de la barbe; doigt; petit doigt | finger; face;
+            nipple; hair; secret place&#xD; &#xD; &#xD; While there are 7 strings in
+            https://github.com/cu-mkp/m-k-manuscript-data/blob/master/entries/xml/tl/tl_005r_2.xml,
+            tc and tcn are only picking up 6 and tl is 5.&#xD; - update.py seems to be displaying
+            unique terms only (e.g., "finger" is tagged twice but only appears once:&#xD;
+            `representation with your &lt;bp&gt;finger&lt;/bp&gt;, another
+            &lt;bp&gt;finger&lt;/bp&gt;`&#xD; - another problem either with some form of
+            normalization or tags wrapped within another tag (e.g., "little finger" is
+            missing - perhaps because it is also within `&lt;ms&gt;` tags or because it is filed
+            under "finger")&#xD; ` your &lt;ms&gt;&lt;bp&gt;little
+            finger&lt;/bp&gt;&lt;/ms&gt;, perfectly round`&#xD; - regex problems with the character
+            "s" (everything after an "s" is clipped due to regex white space
+            character)&#xD; `&lt;bp&gt;hairs of your beard&lt;/bp&gt;` --&gt; hair&#xD;
+            `&lt;bp&gt;secret places&lt;/bp&gt;` --&gt; secret place&#xD; &#xD; ## nested tags
+            issues&#xD; - There are many instances throughout the manuscript where different tags
+            are nested within each other, like the `&lt;ms&gt;&lt;bp&gt;` used above in 5r. These
+            should be checked to make sure they are picked up as both ms and bp (i.e., populating
+            both the cell for ms and and the cell for bp).&#xD; &#xD; - More complicatedly, there
+            are nested tags of the same type (i.e., `&lt;bp&gt;&lt;bp&gt;`)&#xD; &#xD; Use div id
+            013r_4 as a test case:
+            https://github.com/cu-mkp/m-k-manuscript-data/blob/master/entries/xml/tl/tl_013r_4.xml&#xD;
+            &#xD; Current values for m (material) are:&#xD; &#xD; m_tc | m_tcn | m_tl&#xD; -- | -- |
+            --&#xD; farine; poil de cheval; estamine de soye crue; soye creue; fumee du soufre;
+            soye; soye crue jaulne &amp;amp; naturelle; soye crue | farine; poil de cheval; estamine
+            de soye crue; soye creue; fumee du soufre; soye; soye crue jaulne &amp;amp; naturelle;
+            soye crue | flour; smoke; tammy of raw silk; horsehair; silk; yellow raw &amp;amp;
+            natural silk&#xD; &#xD; While there are 9 material strings in
+            https://github.com/cu-mkp/m-k-manuscript-data/blob/master/entries/xml/tl/tl_005r_2.xml,
+            tl is only picking up 7 (tc and tcn seem to be picking up 9).&#xD; - Here we have
+            multiple nested m tags which are not being returned as separate values. For example,
+            the
+            string &#xD; `&lt;m&gt;&lt;m&gt;raw silk&lt;/m&gt; whitened by &lt;m&gt;sulfur
+            smoke&lt;/m&gt;&lt;/m&gt;` &#xD; should return: &#xD; 1. raw silk whitened by sulfur
+            smoke;&#xD; 2. raw silk;&#xD; 3. sulfur smoke&#xD; &#xD; &#xD; &#xD; &#xD; &#xD; &#xD;
+            &#xD; &#xD; </p>
+      </div>
+   </body>
+</html>

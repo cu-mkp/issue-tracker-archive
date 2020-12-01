@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>punctuation mark outside of div tag in ms-xml</title>
+   </head>
+   <body>
+      <h1>1898: punctuation mark outside of div tag in ms-xml</h1>
+      <div>
+         <p>In
+            [ms-xml/tl/tl_p150r_preTEI.xml](https://github.com/cu-mkp/m-k-manuscript-data/blob/master/ms-xml/tl/tl_p150r_preTEI.xml)
+            in the last entry (id="p150r_3", called "Molds"), there is an extra
+            period after the closing div tag:&#xD; ```&#xD; &lt;m&gt;Very finely ground iron
+            scales&lt;/m&gt; render them very firm &amp;amp;&#xD;
+            strong.&lt;/ab&gt;&lt;/div&gt;.&#xD; &lt;/root&gt;&#xD; ```&#xD; I do NOT see the same
+            thing in the tc and tcn versions.&#xD; I'm not sure if this is an error, but it
+            causes some issues with XML parsing over in manuscript-object because we don't
+            expect to have content outside of divs.&#xD; We can work around it if this
+            intentional.&#xD; &#xD; No other files in ms-xml/tl cause similar issues.</p>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>Check on semantic tags that span across folios</title>
+   </head>
+   <body>
+      <h1>575: Check on semantic tags that span across folios</h1>
+      <div>
+         <p>When a phrase to be tagged spans across more than one folio, we encounter a few
+            problems and there is the possibility that there has not been a consistent
+            solution.&#xD; &#xD; For example, on 18v-19r, "pieces de campaigne" is an
+            entire phrase to be tagged as `&lt;wp&gt;`&#xD; &gt;18v&#xD;
+            &gt;....`&lt;wp&gt;`pieces`&lt;/ab&gt;`&#xD; &gt;19r&#xD; &gt; de campaigne`&lt;/wp&gt;`
+            ...&#xD; &#xD; &#xD; In order to prevent well-formedness errors, 2 approaches have been
+            taken:&#xD; 1. add closing and opening weapon tags to each part of the phrase, i.e.&#xD;
+            &gt;18v&#xD; &gt;....`&lt;wp&gt;` pieces `&lt;/wp&gt;&lt;/ab&gt;`&#xD; &gt;19r&#xD;
+            &gt;`&lt;wp&gt;` de campaigne `&lt;/wp&gt;`... &#xD; 2. add `&lt;sup&gt;` tags to the
+            first section and removing `&lt;wp&gt;` from the second part&#xD; &#xD; &#xD; TO
+            DO:&#xD; - Check what has been done to see if this has been done consistently (and
+            whether it matters)&#xD; - For controlled/normalized vocabulary, these decisions need
+            to
+            be taken into consideration for term lists as they may create confusing or incomplete
+            entries&#xD; </p>
+      </div>
+   </body>
+</html>

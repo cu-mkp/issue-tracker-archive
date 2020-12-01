@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>identify and fix discrepancies in number of figures, links, and their ids</title>
+   </head>
+   <body>
+      <h1>1027: identify and fix discrepancies in number of figures, links, and their ids</h1>
+      <div>
+         <p>Related to #807 &#xD; &#xD; Running the following xpath queries shows that number of
+            figures, links, and fig-ids is the same across all versions. HOWEVER, the number of
+            figures vs links vs ids is NOT the same.&#xD; &#xD; Identify where these problems are
+            occurring:&#xD; &#xD; xpath query |   | number&#xD; -- | -- | --&#xD; //figure | tc |
+            157&#xD; //figure | tcn | 157&#xD; //figure | tl | 157&#xD;   |   |  &#xD; //figure/id |
+            tc | 155&#xD; //figure/id | tcn | 155&#xD; //figure/id | tl | 155&#xD;   |   |  &#xD;
+            //link | tc | 156&#xD; //link | tcn | 156&#xD; //link | tl | 156&#xD; &#xD; &#xD; </p>
+      </div>
+   </body>
+</html>

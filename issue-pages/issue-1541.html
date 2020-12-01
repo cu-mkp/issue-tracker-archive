@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>cut-off captions: check for invisible line break and remove</title>
+   </head>
+   <body>
+      <h1>1541: cut-off captions: check for invisible line break and remove</h1>
+      <div>
+         <p>2 cut-off caption problems were diagnosed by NJR and Nick as actual line breaks (hard
+            returns) at the end of a line within a caption. These looked invisible because the
+            spacing of the sentence naturally broke off at that point.&#xD; &#xD; E.g., for
+            Captions_ann_317_ie_19_Munoz_Fraysse, caption 2 was cut off after "Jean" -
+            this was because there was a hard return after this word and before
+            "Rancy"&#xD; &#xD; BEFORE FIX&#xD; &gt; Fig. 2: Griffoul fountain in place
+            Saint-Étienne of Toulouse, 1547–1549 (original fountain by Jean &#xD; &#xD; &gt;Rancy),
+            1593 (obelisk by Antoine Bachelier), 1601 (bronze elements by Barthélémy Fraysse),
+            1649
+            &#xD; &#xD; &gt;(bronze decoration by Pierre Affre). Photo: Sarah Muñoz.&#xD; &#xD;
+            AFTER FIX:&#xD; &#xD; &gt;Fig. 2: Griffoul fountain in place Saint-Étienne of Toulouse,
+            1547–1549 (original fountain by Jean Rancy), 1593 (obelisk by Antoine Bachelier),
+            1601
+            (bronze elements by Barthélémy Fraysse), 1649 (bronze decoration by Pierre Affre).
+            Photo: Sarah Muñoz.&#xD; &#xD; But to the naked eye in GD, these looked identical.&#xD;
+            &#xD; For any identified cut-off captions, try deleting the space after the cut-off word
+            and adding back just one space character.&#xD; &#xD; To test, use a text editor that
+            does not wrap text in the same way as GD (e.g., Notepad, TextEdit, oXygen, Atom,
+            Sublime, etc.)</p>
+      </div>
+   </body>
+</html>

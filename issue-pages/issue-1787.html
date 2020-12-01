@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><html>
+   <head>
+      <title>replace xmllint with jing for travis validation check</title>
+   </head>
+   <body>
+      <h1>1787: replace xmllint with jing for travis validation check</h1>
+      <div>
+         <p>xmllint apparently does not catch invalid attribute values as defined in relaxng
+            schema.&#xD; &#xD; &#xD; ```&#xD; $ xmllint --noout --relaxng
+            schema/ms-transcription.rng ms-xml/tc/tc_p001r_preTEI.xml &#xD;
+            ms-xml/tc/tc_p001r_preTEI.xml validates&#xD; ```&#xD; jing does:&#xD; &#xD; ```&#xD; $
+            java -jar ~/Dropbox/xml/tools/jing/bin/jing.jar schema/ms-transcription.rng
+            ms-xml/tc/tc_p001r_preTEI.xml &#xD;
+            /Users/terry/Github/m-k-manuscript-data/ms-xml/tc/tc_p001r_preTEI.xml:10:38: error:
+            value of attribute "render" is invalid; must be equal to "full",
+            "tall" or "wide"&#xD; ```</p>
+      </div>
+   </body>
+</html>
