@@ -2,14 +2,16 @@ import json
 import requests
 from config import token # Get the secret token from a file called config.py.
 
-PER_PAGE = 100
+PER_PAGE = 3
+PAGES = 1
 REQUEST_URL = "https://api.github.com/repos/cu-mkp/m-k-manuscript-data/issues"
 
 def get_issues(request_url=REQUEST_URL):
     issues = []
-    for page in range(30): # Is there a better way to make sure we get all the issues than by picking a large number of pages?
-        payload = {"state":"all", "page":page, "per_page":PER_PAGE, "sort":"created", "direction":"asc"}
+    for page in range(1, PAGES+1): # Is there a better way to make sure we get all the issues than by picking a large number of pages?
+        payload = {"state":"all", "page":page, "per_page":PER_PAGE, "sort":"created", "direction":"desc"}
         r = requests.get(request_url, params=payload, headers={"Authorization":f"token {token}"})
+        print(r.status_code)
         issues.extend(r.json())
     return issues
 
@@ -17,7 +19,9 @@ def get_comments(issues):
     comments = {}
     for issue in issues:
         comments[issue["id"]] = []
-        for page in range(1, issue["comments"]//PER_PAGE):
+        print(issue["comments"]/PER_PAGE)
+        for page in range(1, issue["comments"]//PER_PAGE+2):
+            print("looping loop")
             payload = {"state":"all", "page":page, "per_page":PER_PAGE, "sort":"created", "direction":"asc"}
             r = requests.get(issue["comments_url"], params=payload, headers={"Authorization":f"token {token}"})
             comments[issue["id"]].extend(r.json())
