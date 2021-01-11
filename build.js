@@ -1,77 +1,43 @@
-const path = require("path"); // Module for handling path names.
-const fs = require("fs"); // Module for accessing file system.
-const handlebars = require("handlebars"); // Module for templating.
-const showdown = require("showdown"); // Module for rendering GitHub-flavored Markdown as HTML.
+const path = require("path");
+const fs = require("fs");
+const Generator = require("./generator");
 
-var converter;
+const ISSUES_FILE = "./_data/issues.json";
+const COMMENTS_FILE = "./_data/comments.json";
+const TEMPLATE_FILE = "./_templates/default.html";
+const TITLE_PARTIAL_FILE = "./_templates/title.handlebars";
+const ISSUE_PARTIAL_FILE = "./_templates/issue.handlebars";
+const COMMENTS_PARTIAL_FILE = "./_templates/comments.handlebars";
+const DESTINATION_DIRECTORY = "./_site/";
 
-function converterSetup() {
-    let options = {
-        simpleLineBreaks: true
-        // Add other GitHub-flavored Markdown features here.
-    };
-    converter = new showdown.Converter(options);
-}
+const SHOWDOWN_OPTIONS = {
+    simpleLineBreaks: true
+    // Add other GitHub-flavored Markdown features here.
+};
 
-function loadTemplate(filename) {
-    let source = null;
-    try {
-        source = fs.readFileSync(filename, "utf8"); 
+const PARTIALS = {
+    title: TITLE_PARTIAL_FILE,
+    issue: ISSUE_PARTIAL_FILE,
+    comments: COMMENTS_PARTIAL_FILE
+};
+
+var generator;
+
+function main() {
+
+    generator = new Generator(TEMPLATE_FILE, PARTIALS, SHOWDOWN_OPTIONS);
+
+    const issues = loadJSON(ISSUES_FILE);
+    const comments = loadJSON(COMMENTS_FILE);
+
+    for (let issue of issues) {
+        let outfile = path.join(DESTINATION_DIRECTORY, "issue" + issue.number.toString() + ".html");
+
+        let context = prepareContext(issue, comments[issue.id]);
+
+        let page = generator.generatePage(context);
+        generator.write(page, outfile);
     }
-    catch (err) {
-        console.log("Error reading file from disk:", err);
-        return;
-    }
-    let template = handlebars.compile(source);
-    return template;
-}
-
-function registerPartial(name, filename) {
-    let source = null;
-    try {
-        source = fs.readFileSync(filename, "utf8");
-    }
-    catch (err) {
-        console.log("Error reading file from disk:", err);
-        return;
-    }
-    handlebars.registerPartial(name, source);
-}
-
-function buildIssuePage(issuesJSON, commentsJSON, template) {
-
-    // Assertion makes sure the following if statement makes sense by logically coupling these two values.
-    console.assert((issuesJSON["comments"]==0 && !commentsJSON) || (issuesJSON["comments"]!=0 && commentsJSON));
-
-    issuesJSON["body"] = convertMarkdown(issuesJSON["body"]);
-    if (commentsJSON) {
-        for (let i=0; i<commentsJSON.length; i++) {
-            commentsJSON[i]["body"] = convertMarkdown(commentsJSON[i]["body"]);
-        }
-    }
-
-    let context = {
-        "issue" : issuesJSON,
-        "comments" : commentsJSON
-    };
-
-    let output = template(context);
-    return output;
-}
-
-function convertMarkdown(md) {
-    let html = converter.makeHtml(md);
-    return html;
-}
-
-function writeIssuePage(html, destination) {
-    fs.writeFile(destination, html, (err) => {
-        if (err) {
-            console.log("Error writing file to disk:", err);
-            return;
-        }
-        console.log("Wrote to ", destination);
-    });
 }
 
 function loadJSON(filename) {
@@ -95,33 +61,23 @@ function loadJSON(filename) {
     }
 }
 
-function main(issuesFile, commentsFile, templateFile, titlePartialFile, issuePartialFile, commentsPartialFile, destinationDirectory) {
+function prepareContext(issue, comments) {
 
-    converterSetup();
+    // Assertion makes sure the following if statement makes sense by logically coupling these two values.
+    console.assert((issue.comments==0 && !comments) || (issue.comments!=0 && comments));
 
-    const template = loadTemplate(templateFile);
-    registerPartial("title", titlePartialFile);
-    registerPartial("issue", issuePartialFile);
-    registerPartial("comments", commentsPartialFile);
-
-    const issues = loadJSON(issuesFile);
-    const comments = loadJSON(commentsFile);
-
-    for (let i=0; i<issues.length; i++) {
-        let issueJSON = issues[i];
-        let commentsJSON = comments[issues[i]["id"]];
-        let page = buildIssuePage(issueJSON, commentsJSON, template);
-        let outfile = path.join(destinationDirectory, "issue" + issueJSON["number"].toString() + ".html");
-        writeIssuePage(page, outfile);
+    issue.body = generator.renderMarkdown(issue.body);
+    if (comments) {
+        for (let i=0; i<comments.length; i++) {
+            comments[i].body = generator.renderMarkdown(comments[i].body);
+        }
     }
+
+    let context = {
+        issue: issue,
+        comments: comments
+    };
+    return context;
 }
 
-main(
-    "./_data/issues.json",
-    "./_data/comments.json",
-    "./_templates/default.html",
-    "./_templates/title.handlebars",
-    "./_templates/issue.handlebars",
-    "./_templates/comments.handlebars",
-    "./_site/"
-);
+main();
