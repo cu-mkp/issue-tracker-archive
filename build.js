@@ -24,6 +24,10 @@ const PARTIALS = {
 var generator;
 
 function main() {
+    
+    if (!path.existsSync(DESTINATION_DIRECTORY)) {
+        fs.mkdirSync(DESTINATION_DIRECTORY);
+    }
 
     generator = new Generator(TEMPLATE_FILE, PARTIALS, SHOWDOWN_OPTIONS);
 
