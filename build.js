@@ -29,13 +29,17 @@ function main() {
         fs.mkdirSync(DESTINATION_DIRECTORY);
     }
 
+    if (!fs.existsSync(path.join(DESTINATION_DIRECTORY, "issue"))) {
+        fs.mkdirSync(path.join(DESTINATION_DIRECTORY, "issue"));
+    }
+
     generator = new Generator(TEMPLATE_FILE, PARTIALS, SHOWDOWN_OPTIONS);
 
     const issues = loadJSON(ISSUES_FILE);
     const comments = loadJSON(COMMENTS_FILE);
 
     for (let issue of issues) {
-        let outfile = path.join(DESTINATION_DIRECTORY, "issue" + issue.number.toString() + ".html");
+        let outfile = path.join(DESTINATION_DIRECTORY, "issue", issue.number.toString() + ".html");
 
         let context = prepareContext(issue, comments[issue.id]);
 
