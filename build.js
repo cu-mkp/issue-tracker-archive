@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const Generator = require("./generator");
 
+const ASSETS_DIRECTORY = "./assets";
 const ISSUES_FILE = "./_data/issues.json";
 const COMMENTS_FILE = "./_data/comments.json";
 const TEMPLATE_FILE = "./_templates/default.html";
@@ -33,6 +34,10 @@ function main() {
         fs.mkdirSync(path.join(DESTINATION_DIRECTORY, "issue"));
     }
 
+    if (fs.existsSync(ASSETS_DIRECTORY)) {
+        copyFolderRecursiveSync(ASSETS_DIRECTORY, DESTINATION_DIRECTORY);
+    }
+
     generator = new Generator(TEMPLATE_FILE, PARTIALS, SHOWDOWN_OPTIONS);
 
     const issues = loadJSON(ISSUES_FILE);
@@ -45,6 +50,29 @@ function main() {
 
         let page = generator.generatePage(context);
         generator.write(page, outfile);
+    }
+}
+
+function copyFolderRecursiveSync( source, target ) {
+    var files = [];
+
+    // Check if folder needs to be created or integrated
+    var targetFolder = path.join( target, path.basename( source ) );
+    if ( !fs.existsSync( targetFolder ) ) {
+        fs.mkdirSync( targetFolder );
+    }
+
+    // Copy
+    if ( fs.lstatSync( source ).isDirectory() ) {
+        files = fs.readdirSync( source );
+        files.forEach( function ( file ) {
+            var curSource = path.join( source, file );
+            if ( fs.lstatSync( curSource ).isDirectory() ) {
+                copyFolderRecursiveSync( curSource, targetFolder );
+            } else {
+                fs.copyFileSync( curSource, path.join(targetFolder, path.basename(curSource)) );
+            }
+        } );
     }
 }
 
