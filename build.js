@@ -30,8 +30,8 @@ function main() {
         fs.mkdirSync(DESTINATION_DIRECTORY);
     }
 
-    if (!fs.existsSync(path.join(DESTINATION_DIRECTORY, "issue"))) {
-        fs.mkdirSync(path.join(DESTINATION_DIRECTORY, "issue"));
+    if (!fs.existsSync(path.join(DESTINATION_DIRECTORY, "issues"))) {
+        fs.mkdirSync(path.join(DESTINATION_DIRECTORY, "issues"));
     }
 
     if (fs.existsSync(ASSETS_DIRECTORY)) {
@@ -44,7 +44,7 @@ function main() {
     const comments = loadJSON(COMMENTS_FILE);
 
     for (let issue of issues) {
-        let outfile = path.join(DESTINATION_DIRECTORY, "issue", issue.number.toString() + ".html");
+        let outfile = path.join(DESTINATION_DIRECTORY, "issues", issue.number.toString() + ".html");
 
         let context = prepareContext(issue, comments[issue.id]);
 
