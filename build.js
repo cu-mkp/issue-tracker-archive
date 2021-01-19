@@ -25,7 +25,7 @@ var generator;
 
 function main() {
     
-    if (!path.existsSync(DESTINATION_DIRECTORY)) {
+    if (!fs.existsSync(DESTINATION_DIRECTORY)) {
         fs.mkdirSync(DESTINATION_DIRECTORY);
     }
 
