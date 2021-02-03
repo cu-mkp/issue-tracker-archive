@@ -3,24 +3,6 @@ const fs = require("fs"); // Module for accessing file system.
 const handlebars = require("handlebars"); // Module for templating.
 const showdown = require("showdown"); // Module for rendering GitHub-flavored Markdown as HTML.
 
-function converterSetup(options) {
-    let converter = new showdown.Converter(options);
-    return converter
-}
-
-function loadTemplate(filename) {
-    let source = null;
-    try {
-        source = fs.readFileSync(filename, "utf8"); 
-    }
-    catch (err) {
-        console.log("Error reading file from disk:", err);
-        return;
-    }
-    let template = handlebars.compile(source);
-    return template;
-}
-
 function registerPartial(name, filename) {
     let source = null;
     try {
@@ -37,13 +19,31 @@ class Generator {
 
     constructor(handlebarsTemplateFile, handlebarsPartials, showdownConverterOptions) {
 
-        this.template = loadTemplate(handlebarsTemplateFile);
-        this.converter = converterSetup(showdownConverterOptions);
+        this.template = this.loadTemplate(handlebarsTemplateFile);
+        this.converter = this.converterSetup(showdownConverterOptions);
 
         for (let name in handlebarsPartials) {
             registerPartial(name.toString(), handlebarsPartials[name]);
         }
 
+    }
+
+    loadTemplate(filename) {
+        let source = null;
+        try {
+            source = fs.readFileSync(filename, "utf8"); 
+        }
+        catch (err) {
+            console.log("Error reading file from disk:", err);
+            return;
+        }
+        let template = handlebars.compile(source);
+        return template;
+    }
+
+    converterSetup(options) {
+        let converter = new showdown.Converter(options);
+        return converter
     }
 
     renderMarkdown(md) {
