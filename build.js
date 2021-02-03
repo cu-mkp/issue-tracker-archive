@@ -59,7 +59,7 @@ function main() {
     }
 
     // Write issues/index.html page.
-    const issueList = issues.map((issue) => { return {number: issue.number, name: issue.title, url: "/issues/" + issue.number.toString() + ".html"}; });
+    const issueList = issues.map((issue) => { return {number: issue.number, name: issue.title, url: "/issue-tracker-archive/issues/" + issue.number.toString() + ".html"}; });
     generator.write(generator.generatePage({"issues": issueList}, generator.loadTemplate(ISSUES_INDEX_TEMPLATE_FILE)),
                     path.join(DESTINATION_DIRECTORY, "issues", "index.html"));
 }
