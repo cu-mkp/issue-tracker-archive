@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
-    {{> title}}
+    <title>Index of issues</title>
 </head>
 <body>
-    {{> issue}}
-    <br>
-    {{> comments}}
+    {{#each issues}}
+    <p><a href="{{url}}">#{{number}}: {{name}}</a></p>
+    {{/each}}
 </body>
 </html>
+
