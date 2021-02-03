@@ -2,13 +2,14 @@ const path = require("path");
 const fs = require("fs");
 const Generator = require("./generator");
 
-const ASSETS_DIRECTORY = "./assets";
+const ASSETS_DIRECTORY = "./assets/";
 const ISSUES_FILE = "./_data/issues.json";
 const COMMENTS_FILE = "./_data/comments.json";
-const TEMPLATE_FILE = "./_templates/default.html";
-const TITLE_PARTIAL_FILE = "./_templates/title.handlebars";
-const ISSUE_PARTIAL_FILE = "./_templates/issue.handlebars";
-const COMMENTS_PARTIAL_FILE = "./_templates/comments.handlebars";
+const ISSUE_TEMPLATE_FILE = "./_templates/issue_layout.html";
+const ISSUE_TITLE_PARTIAL_FILE = "./_templates/issue_title.handlebars";
+const ISSUE_BODY_PARTIAL_FILE = "./_templates/issue_body.handlebars";
+const ISSUE_COMMENTS_PARTIAL_FILE = "./_templates/issue_comments.handlebars";
+const ISSUES_INDEX_TEMPLATE_FILE = "./_templates/issues_index.html";
 const DESTINATION_DIRECTORY = "./_site/";
 
 const SHOWDOWN_OPTIONS = {
@@ -17,9 +18,9 @@ const SHOWDOWN_OPTIONS = {
 };
 
 const PARTIALS = {
-    title: TITLE_PARTIAL_FILE,
-    issue: ISSUE_PARTIAL_FILE,
-    comments: COMMENTS_PARTIAL_FILE
+    issue_title: ISSUE_TITLE_PARTIAL_FILE,
+    issue_body: ISSUE_BODY_PARTIAL_FILE,
+    issue_comments: ISSUE_COMMENTS_PARTIAL_FILE
 };
 
 var generator;
@@ -34,15 +35,20 @@ function main() {
         fs.mkdirSync(path.join(DESTINATION_DIRECTORY, "issues"));
     }
 
+    // Copy assets directory.
     if (fs.existsSync(ASSETS_DIRECTORY)) {
         copyFolderRecursiveSync(ASSETS_DIRECTORY, DESTINATION_DIRECTORY);
     }
 
-    generator = new Generator(TEMPLATE_FILE, PARTIALS, SHOWDOWN_OPTIONS);
+    // Copy index.html file.
+    fs.copyFileSync("./index.html", path.join(DESTINATION_DIRECTORY, "index.html"));
+
+    generator = new Generator(ISSUE_TEMPLATE_FILE, PARTIALS, SHOWDOWN_OPTIONS);
 
     const issues = loadJSON(ISSUES_FILE);
     const comments = loadJSON(COMMENTS_FILE);
 
+    // Write issue pages.
     for (let issue of issues) {
         let outfile = path.join(DESTINATION_DIRECTORY, "issues", issue.number.toString() + ".html");
 
@@ -51,6 +57,11 @@ function main() {
         let page = generator.generatePage(context);
         generator.write(page, outfile);
     }
+
+    // Write issues/index.html page.
+    const issueList = issues.map((issue) => { return {number: issue.number, name: issue.title, url: "/issues/" + issue.number.toString() + ".html"}; });
+    generator.write(generator.generatePage({"issues": issueList}, generator.loadTemplate(ISSUES_INDEX_TEMPLATE_FILE)),
+                    path.join(DESTINATION_DIRECTORY, "issues", "index.html"));
 }
 
 function copyFolderRecursiveSync( source, target ) {
