@@ -1,6 +1,8 @@
 import json
 import requests
-from config import token # Get the secret token from a file called config.py.
+import dotenv
+
+dotenv.load_dotenv()
 
 PER_PAGE = 100
 PAGES = 30
