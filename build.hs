@@ -16,22 +16,24 @@ import qualified Data.Aeson as J
 import qualified Data.Aeson.Types as J (parseMaybe, parseEither, emptyObject)
 import Data.HashMap.Strict as HM (empty, toList)
 import Data.Maybe (fromJust, fromMaybe)
+import Data.List (groupBy)
+import Data.Function (on)
 
 data Issue = Issue
-    { issueNumber :: T.Text
-    , issueId     :: T.Text
+    { issueNumber :: Int --T.Text
+    , issueId     :: Int --T.Text
     , issueUrl    :: T.Text
     , issueTitle  :: T.Text
     , issueAuthor :: T.Text
-    , issueBody   :: T.Text
+    , issueBody   :: Maybe T.Text
     } deriving (Show, Read)
 
 data Comment = Comment
-    { commentId       :: T.Text
+    { commentId       :: Int--T.Text
     , commentUrl      :: T.Text
     , commentIssueUrl :: T.Text
     , commentAuthor   :: T.Text
-    , commentBody     :: T.Text
+    , commentBody     :: Maybe T.Text
     } deriving (Show, Read)
 
 instance J.FromJSON Issue where
@@ -40,18 +42,37 @@ instance J.FromJSON Issue where
       issueId     <- obj J..: "id"
       issueUrl    <- obj J..: "url"
       issueTitle  <- obj J..: "title"
-      issueAuthor <- obj J..: "author"
+      userObj     <- obj J..: "user"
+      issueAuthor <- userObj J..: "login"
       issueBody   <- obj J..: "body"
       return (Issue issueNumber issueId issueUrl issueTitle issueAuthor issueBody)
+
+instance J.ToJSON Issue where
+  toJSON (Issue issueNumber _ issueUrl issueTitle issueAuthor issueBody) =
+      J.object [ "number" J..= issueNumber
+               , "url"    J..= issueUrl
+               , "title"  J..= issueTitle
+               , "author" J..= issueAuthor
+               , "body"   J..= issueBody
+               ]
 
 instance J.FromJSON Comment where
   parseJSON = J.withObject "Comment" $ \obj -> do
       commentId        <- obj J..: "id"
       commentUrl       <- obj J..: "url"
       commentIssueUrl  <- obj J..: "issue_url"
-      commentAuthor    <- obj J..: "author"
+      userObj          <- obj J..: "user"
+      commentAuthor    <- userObj J..: "login"
       commentBody      <- obj J..: "body"
       return (Comment commentId commentUrl commentIssueUrl commentAuthor commentBody)
+
+instance J.ToJSON Comment where
+  toJSON (Comment _ commentUrl commentIssueUrl commentAuthor commentBody) =
+      J.object [ "url"        J..= commentUrl
+               , "issue_url"  J..= commentIssueUrl
+               , "author"     J..= commentAuthor
+               , "body"       J..= commentBody
+               ]
 
 readJsonFile :: (J.FromJSON a) => FilePath -> IO a
 readJsonFile filepath = handleFailure . J.eitherDecode <$> BS.readFile filepath
@@ -60,12 +81,12 @@ readJsonFile filepath = handleFailure . J.eitherDecode <$> BS.readFile filepath
                                    Right val -> val
 
 issuesIO :: IO [Issue]
-issuesIO = J.parseJSONList <$> readJsonFile $ sourceDir </> "issues.json" :: IO [Issue]
+issuesIO = readJsonFile $ sourceDir </> "issues.json" :: IO [Issue]
 
 commentsIO :: IO [(T.Text, [Comment])]
 commentsIO = do
-    contents <- readJsonFile $ sourceDir </> "comments.json"
-    return $ map (\c -> (fromJust $ J.parseMaybe (J..: "issue_url") c, fromJust . J.decode . J.encode $ c)) contents
+    contents <- readJsonFile $ sourceDir </> "comments.json" :: IO [Comment]
+    return . map (\cs -> (commentIssueUrl $ head cs, cs)) . groupBy ((==) `on` commentIssueUrl) $ contents
 
 copyDir :: FilePath -> FilePath -> IO ()
 copyDir src dst = do
@@ -111,7 +132,7 @@ mdToHtml md = do
         P.writeHtml5String P.def doc
     P.handleError result
 
-makeContext :: J.Object -> J.Object -> J.Value
+makeContext :: Issue -> [Comment] -> J.Value
 makeContext issue comments = J.object [ T.pack "issue" J..= issue
                                       , T.pack "comments" J..= comments ]
 
@@ -134,10 +155,9 @@ main :: IO ()
 main = do
     issues <- issuesIO
     comments <- commentsIO
-    print $ (J.parseEither (J..: (T.pack "id")) (last issues) :: Either String Int)
     let firstIssue = last issues
-        Right firstIssueNumber = J.parseEither (J..: (T.pack "id")) firstIssue :: Either String Int
-        firstComments = fromMaybe (HM.empty) (lookup firstIssueNumber comments)
+        firstIssueUrl = issueUrl firstIssue :: T.Text
+        firstComments = fromMaybe [] (lookup firstIssueUrl comments)
 
     makeIssuePage (makeContext firstIssue firstComments)
     return ()
