@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#$issue.number$: $issue.title$</title>
+</head>
+<body>
+    <h1>#$issue.number$: $issue.title$</h1>
+    <h2>opened by $issue.user.login$</h2>
+    <div>$issue.body$</div>
+    <br>
+    $for(comments)$
+        <h2>$it.user.login$ commented:</h2>
+        <div>$it.body$</div>
+        <br>
+    $endfor$
+</body>
+</html>
