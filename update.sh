@@ -7,12 +7,12 @@ else
     exit 2
 fi
 
-RATE_RESPONSE=$(curl -s --fail \
-    -H "Authorization: token $TOKEN" \
-    "https://api.github.com/rate_limit")
+RATE_RESPONSE=$(curl -s --fail -H "Authorization: token $TOKEN" "https://api.github.com/rate_limit")
 
-OUTFILE_ISSUES="./_data/_issues.json"
-OUTFILE_COMMENTS="./_data/_comments.json"
+OUTFILE_ISSUES="./_data/issues.json"
+OUTFILE_COMMENTS="./_data/comments.json"
+
+HEADERS_FILE="./tmp/headers"
 
 if [ -f $OUTFILE_ISSUES ] ;
 then
@@ -24,38 +24,49 @@ then
     rm $OUTFILE_COMMENTS
 fi
 
-PER_PAGE=100
-PAGES=30
-CURR_PAGE=1
-echo "[" >> $OUTFILE_ISSUES
-while [ $CURR_PAGE -le $PAGES ] ;
-do
-    RESPONSE=$(curl -s --fail \
-        -H "Authorization: token $TOKEN" \
-        "https://api.github.com/repos/cu-mkp/m-k-manuscript-data/issues?state=all&direction=asc&sort=created&page=$CURR_PAGE&per_page=$PER_PAGE")
+mkdir -p "./tmp/"
 
-    echo "${RESPONSE:1: -1}" >> $OUTFILE_ISSUES
-    CURR_PAGE=$((CURR_PAGE+1))
-done
-echo "]" >> $OUTFILE_ISSUES
+if [ -f $HEADERS_FILE ] ;
+then
+    rm $HEADERS_FILE
+fi
 
-# This is a terrible solution.
-# Better solutions involve using a real programming language that understands JSON.
-# Also it assumes <=100 comments per issue.
-echo "{" >> $OUTFILE_COMMENTS
-# evil sed hack
-for COMMENTS_URL_LINE in $(cat $OUTFILE_ISSUES | sed -n "s/^\s*\"comments_url\": \"\(\S*\)\",$/\1/g;tp;b;:p;=");
-do
-    COMMENTS_URL=$(sed "${COMMENTS_URL_LINE}q;d" $OUTFILE_ISSUES | sed -n "s/^\s*\"comments_url\": \"\(\S*\)\",$/\1/p")
-    ISSUE_ID_LINE=$((COMMENTS_URL_LINE+3))
-    ISSUE_ID=$(sed "${ISSUE_ID_LINE}q;d" $OUTFILE_ISSUES | sed -n "s/^\s*\"id\": \(\S*\),$/\1/p")
-    RESPONSE=$(curl -s --fail \
-        -H "Authorization: token $TOKEN" \
-        "$COMMENTS_URL?direction=asc&sort=created&per_page=100")
 
-    echo "$ISSUE_ID:" >> $OUTFILE_COMMENTS
-    echo "$RESPONSE," >> $OUTFILE_COMMENTS
-done
-sed -i "$d" $OUTFILE_COMMENTS
-echo "]" >> $OUTFILE_COMMENTS
-echo "}" >> $OUTFILE_COMMENTS
+depaginate_and_write () {
+    # Arguments:
+    #   $1: initial target url
+    #   $2: file to write to
+    TARGET_URL=$1
+    OUTFILE=$2
+
+    DONE=0
+    echo "[" >> $OUTFILE
+    while [ $DONE != 1 ] ;
+    do
+        RESPONSE=$(curl -D "$HEADERS_FILE" -s --fail \
+            -H "Authorization: token $TOKEN" \
+            "$TARGET_URL")
+
+        # Use pagination data to get next url.
+        TARGET_URL=$(cat $HEADERS_FILE | sed -n "s/^link: .*<\(.*\)>; rel=\"next\".*$/\1/p")
+        # No "next" in header => we're done.
+        if [ -z "$TARGET_URL" ] ;
+        then
+            DONE=1
+        fi
+
+        echo "${RESPONSE:1: -1}" >> $OUTFILE
+        echo "," >> $OUTFILE
+    done
+    # Remove the last ","
+    sed -i '$d' $OUTFILE
+    echo "]" >> $OUTFILE
+}
+
+PER_PAGE=2
+
+depaginate_and_write "https://api.github.com/repos/cu-mkp/m-k-manuscript-data/issues?state=all&direction=asc&sort=created&page=1&per_page=$PER_PAGE" $OUTFILE_ISSUES
+
+depaginate_and_write "https://api.github.com/repos/cu-mkp/m-k-manuscript-data/issues/comments?direction=asc&sort=created&per_page=$PER_PAGE" $OUTFILE_COMMENTS
+
+rm -r "./tmp/"
