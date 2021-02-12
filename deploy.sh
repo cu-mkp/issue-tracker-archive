@@ -1,10 +1,13 @@
 #!/bin/bash
 
-rm -r _site/
-python3 update.py
-node build.js
-git add _site/
+SITE_DIR="issue-tracker-archive/"
+SITE_BRANCH="gh-pages"
+
+bash update.sh
+runhaskell build.hs
+
+git add $SITE_DIR
 git commit -m "Build site"
-git push -d origin gh-pages
-git subtree push --prefix _site/ origin gh-pages
+git push -d origin $SITE_BRANCH
+git subtree push --prefix $SITE_DIR origin $SITE_BRANCH
 git reset HEAD~1
