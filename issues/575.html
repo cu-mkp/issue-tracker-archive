@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#575: Check on semantic tags that span across folios</title>
+</head>
+<body>
+    <h1>#575: Check on semantic tags that span across folios</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>When a phrase to be tagged spans across more than one folio, we encounter a few problems and there is the possibility that there has not been a consistent solution.</p>
+<p>For example, on 18v-19r, "pieces de campaigne" is an entire phrase to be tagged as <code>&lt;wp&gt;</code></p>
+<blockquote>
+<p>18v ....<code>&lt;wp&gt;</code>pieces<code>&lt;/ab&gt;</code> 19r de campaigne<code>&lt;/wp&gt;</code> ...</p>
+</blockquote>
+<p>In order to prevent well-formedness errors, 2 approaches have been taken: 1. add closing and opening weapon tags to each part of the phrase, i.e.</p>
+<blockquote>
+<p>18v ....<code>&lt;wp&gt;</code> pieces <code>&lt;/wp&gt;&lt;/ab&gt;</code> 19r <code>&lt;wp&gt;</code> de campaigne <code>&lt;/wp&gt;</code>... 2. add <code>&lt;sup&gt;</code> tags to the first section and removing <code>&lt;wp&gt;</code> from the second part</p>
+</blockquote>
+<p>TO DO: - Check what has been done to see if this has been done consistently (and whether it matters) - For controlled/normalized vocabulary, these decisions need to be taken into consideration for term lists as they may create confusing or incomplete entries</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>@tcatapano, can you weigh in here?</p></div>
+        <br>
+    </body>
+</html>

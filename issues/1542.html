@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1542: diagnose rotated image problem</title>
+</head>
+<body>
+    <h1>#1542: diagnose rotated image problem</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>Some images in essays are rendered sideways or rotated from what they should be. See https://github.com/cu-mkp/making-knowing-edition/issues/338</p>
+<p>Diagnose why this is: source files themselves are rotated? GD perhaps stores them in a rotated form that then looks correct introduced as part of pull-down process?</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>command to check for orientation values in a given file (here, any .jpg in the current directory): <code>exiftool *.jpg |grep Orientation</code></p></div>
+        <br>
+    </body>
+</html>

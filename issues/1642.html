@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1642: missing head_tl in entry-metadata</title>
+</head>
+<body>
+    <h1>#1642: missing head_tl in entry-metadata</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>It appears that some heads are not being extracted for tl but are fine for tc and tcn. https://github.com/cu-mkp/m-k-manuscript-data/blob/master/metadata/entry_metadata.csv</p>
+<p>So far, I have found:</p>
+<ul>
+<li>027v_2 | arms and armor | Faulconeau de 4 quintals autrement passevo lants tire 8 pans | Faulconeau de 4 quintals autrement passevo- lants tire 8 pans --&gt; (may be related to #1640)</li>
+<li>027v_5 | arms and armor | 1 quintal tire six pans et demy | 1 quintal, tire six pans et demy</li>
+<li>027v_6 arms and armor | 1 quintal et demy tire 7 pans et demy | 1 quintal et demy tire 7 pans et demy</li>
+</ul>
+<p>@matthewkumar, can you take a look at your extraction process and see if there are any hiccups?</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Now overridden by #1726 fixes</p></div>
+        <br>
+    </body>
+</html>

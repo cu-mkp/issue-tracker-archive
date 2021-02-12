@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1947: migrate from travis to Github Actions</title>
+</head>
+<body>
+    <h1>#1947: migrate from travis to Github Actions</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>following upon #1942, we now need to disable travis and migrate to using Github Actions which we hope will be a good fit for the same check that travis was doing.</p>
+<p>The travis check was running a RelaxNG validation of the xml files under ms-xml/ against the schema in schema/. Review the stringency of this against #1787. IN ADDITION, we just added additional checks to travis as per #1941.</p>
+<p>Github Actions should do the same. https://docs.github.com/en/actions/learn-github-actions/migrating-from-travis-ci-to-github-actions</p>
+<p>@tcatapano - disable travis and check better validator. @gschare - enable Actions</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>travis has been disabled and uninstalled from all cu-mkp organization repos</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>https://docs.github.com/en/actions/learn-github-actions/introduction-to-github-actions</p></div>
+        <br>
+    </body>
+</html>

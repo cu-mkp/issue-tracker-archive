@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1939: 2021-02-01 tasks</title>
+</head>
+<body>
+    <h1>#1939: 2021-02-01 tasks</h1>
+    <h2>opened by njr2128</h2>
+    <div><ul>
+<li>[x] run update.py to check for derivative file fix (https://github.com/cu-mkp/manuscript-object/issues/70)</li>
+<li>[x] create set of instructions for changing any derivative files (see comment below)</li>
+<li>[x] unit testing --&gt; is https://github.com/cu-mkp/manuscript-object/issues/51 (code checks as developing manuscript-object)</li>
+<li>[x] regression testing by updating travis --&gt; #1941 (checks AFTER update.py is run)</li>
+<li>[x] automated checks of metadata (from last time) --&gt; https://github.com/cu-mkp/manuscript-object/issues/48 (entry-metadata has complete and accurate values, which can be dealt with at either stage, either at level of https://github.com/cu-mkp/manuscript-object/issues/51 and #1941)</li>
+<li>[x] review DCE redesign</li>
+<li>[x] https://github.com/cu-mkp/manuscript-object/issues/68 (release of manuscript-object) --&gt; later</li>
+<li>[x] open issues? set priorities</li>
+<li>[x] travis CI shenanigans - #1942 and #1947</li>
+<li>[x] add to READ.me files how to properly run update.py using a branch</li>
+</ul></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>@gschare will create place to put this: making changes to derivative files in m-k-manuscript-data: <code>cd [m-k-manuscript-data] git fetch git pull git checkout -b [name of branch] {checkout a branch} cd [manuscript-object] git fetch git pull python(+version) update.py cd [m-k-manuscript-data] git add .  git commit -m ‘#[issue##]: [commit message]’ git push -u origin [branchname]</code></p></div>
+        <br>
+            <h2>gschare commented:</h2>
+        <div><p>Maybe put this in a README.md in the root of the repo?</p>
+<p>Making changes to derivative files in <code>m-k-manuscript-data</code>:</p>
+<ol>
+<li><code>cd</code> to <code>m-k-manuscript-data</code> directory</li>
+<li><code>git fetch</code></li>
+<li><code>git pull</code></li>
+<li>Checkout a branch: <code>git checkout -b [name of branch]</code></li>
+<li><code>cd</code> to <code>manuscript-object</code> directory</li>
+<li><code>git fetch</code></li>
+<li><code>git pull</code></li>
+<li>Run update.py: <code>python3 update.py</code> (might need to use <code>python3.8</code>, e.g., if you have more than one version installed)</li>
+<li><code>cd</code> back to <code>m-k-manuscript-data</code> directory</li>
+<li><code>git add .</code></li>
+<li><code>git commit -m '#[issue##]: [commit message]'</code></li>
+<li><code>git push -u origin [name of branch]</code></li>
+</ol></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>@gschare - yes. Let's put in both manuscript-object and m-k-manuscript-data UPDATE: just manuscript-data because object already has a form of this</p></div>
+        <br>
+    </body>
+</html>

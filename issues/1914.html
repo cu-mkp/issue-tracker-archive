@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1914: duplicate comment ids on 55r result in missing comment</title>
+</head>
+<body>
+    <h1>#1914: duplicate comment ids on 55r result in missing comment</h1>
+    <h2>opened by njr2128</h2>
+    <div><p><code>c_055r_06</code> exists twice as a comment id: <img src="https://user-images.githubusercontent.com/14779727/95328123-13b7b580-0873-11eb-827a-a1648a4f9e76.png" alt="image" /></p>
+<p>While anchors are placed correctly in all three versions (tc, tcn, tl), they all point to the second instance in **DCE_comment-tracking**. <img src="https://user-images.githubusercontent.com/14779727/95328365-77da7980-0873-11eb-80b8-c249a4cabcef.png" alt="image" /></p>
+<p>Create unique id for the duplicate and update the anchors on 55r</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>the second instance (the one appearing later in the text) has been changed to <code>c_055r_07</code> (about correction in original) while <code>c_055r_06</code> now should refer only to the comment about the backwards title of this entry</p></div>
+        <br>
+    </body>
+</html>

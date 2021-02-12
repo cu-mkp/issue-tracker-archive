@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1260: regenerate and refresh el_counts</title>
+</head>
+<body>
+    <h1>#1260: regenerate and refresh el_counts</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>as part of work for #103</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>As done originally in #103</p>
+<p>using xmlstarlet over each ms-xml directory produces reports for per file element counts for analysis in spreadsheet https://docs.google.com/spreadsheets/d/12jTV_9d2uvZDGSg0lMU2gg6j0S8usRaOvuZjNQsp2Jk/edit?usp=sharing</p>
+<p><code>for XML in `find ms-xml/tc -name '*.xml'` ;do echo $XML; xmlstarlet el "$XML" | rev | cut -d'/' -f1 | rev | sort | uniq -c ; done</code></p>
+<p>change <code>ms-xml/tc</code> for each version (ie <code>ms-xml/tcn</code> and <code>ms-xml/tl</code>) and run again</p>
+<p>Copy output and paste into spreadsheet (each line taking one cell)</p>
+<p><img src="https://user-images.githubusercontent.com/14779727/68705712-900b2100-055c-11ea-8b5d-7e1102fce341.png" alt="image" /></p></div>
+        <br>
+    </body>
+</html>

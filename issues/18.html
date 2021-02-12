@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#18: question about committing a deletion</title>
+</head>
+<body>
+    <h1>#18: question about committing a deletion</h1>
+    <h2>opened by ps2270</h2>
+    <div><p>Terry, we deleted newProject.xpr from my local repo, and I haven't staged or committed it b/c I don't know the ramifications of doing so. Should I just do so? thanks for your help</p></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>Try a <code>git pull --rebase</code> and we'll see what happens.</p></div>
+        <br>
+            <h2>ps2270 commented:</h2>
+        <div><p>I did that several times, but I get the error msg: error: cannot pull with rebase: You have unstaged changes. error: please commit or stash them.</p>
+<p>It's only that "newProject.xpr" deletion that I haven't staged or committed</p></div>
+        <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>Try git stash. That will make git ignore whatever local changes you have so you can pull.</p>
+<p>On Fri, Sep 28, 2018, 09:54 Pamela Smith <a href="mailto:notifications@github.com" class="email">notifications@github.com</a> wrote:</p>
+<blockquote>
+<p>I did that several times, but I get the error msg: error: cannot pull with rebase: You have unstaged changes. error: please commit or stash them.</p>
+<p>— You are receiving this because you were assigned. Reply to this email directly, view it on GitHub <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/18#issuecomment-425443026" class="uri">https://github.com/cu-mkp/m-k-manuscript-data/issues/18#issuecomment-425443026</a>, or mute the thread <a href="https://github.com/notifications/unsubscribe-auth/AA7A8kyk6n2-porleBRQbKNyj6AFnf_sks5ufioIgaJpZM4W-bBu" class="uri">https://github.com/notifications/unsubscribe-auth/AA7A8kyk6n2-porleBRQbKNyj6AFnf_sks5ufioIgaJpZM4W-bBu</a> .</p>
+</blockquote></div>
+        <br>
+            <h2>ps2270 commented:</h2>
+        <div><p>worked thanks.</p></div>
+        <br>
+    </body>
+</html>

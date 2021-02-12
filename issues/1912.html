@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1912: improve + enhance metadata associated with dce dataCite DOI</title>
+</head>
+<body>
+    <h1>#1912: improve + enhance metadata associated with dce dataCite DOI</h1>
+    <h2>opened by tcatapano</h2>
+    <div><p>In particular, resource type which is currently general "text" (OK) and specific "article" (not OK)</p>
+<p>In practice, when saving to Zotero, item type is "Journal Article"</p>
+<p>In various metadata outputs from dataCite https://search.datacite.org/works/10.7916/78yt-2v41</p>
+<p>DataCite XML: https://api.datacite.org/dois/application/vnd.datacite.datacite+xml/10.7916/78yt-2v41 perhaps also use casrai:Website<br />
+<code>&lt;publisher&gt;The Making and Knowing Project&lt;/publisher&gt;   &lt;publicationYear&gt;2020&lt;/publicationYear&gt;   &lt;resourceType resourceTypeGeneral="Text"/&gt;</code></p>
+<p>DataCite JSON: https://api.datacite.org/dois/application/vnd.datacite.datacite+json/10.7916/78yt-2v41</p>
+<p>perhaps use: bibtex:misc</p>
+<p><code>"types": {     "ris": "RPRT",     "bibtex": "article",     "citeproc": "article-journal",     "schemaOrg": "ScholarlyArticle",     "resourceTypeGeneral": "Text"</code> Schema.org JSON:</p>
+<p>perhaps use: https://schema.org/WebSite</p>
+<p><code>{   "@context": "http://schema.org",   "@type": "ScholarlyArticle",   "@id": "https://doi.org/10.7916/78yt-2v41",   "url": "https://edition640.makingandknowing.org/#/",</code></p></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>Also, add editors and specify editor role as per preferred citation:</p>
+<blockquote>
+<p>Making and Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano, eds., Secrets of Craft and Nature in Renaissance France. A Digital Critical Edition and English Translation of BnF Ms. Fr. 640 (New York: Making and Knowing Project, 2020), https://edition640.makingandknowing.org.`</p>
+</blockquote></div>
+        <br>
+    </body>
+</html>

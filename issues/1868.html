@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1868: set up users to run update.py</title>
+</head>
+<body>
+    <h1>#1868: set up users to run update.py</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>Identify all requirements and dependencies (e.g., installing python 2.7 or 3.7)</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Updating python and pip:</p>
+<blockquote>
+<p>sudo apt install python3.8 sudo apt install python3-pip sudo apt update</p>
+</blockquote></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>then</p>
+<blockquote>
+<p>python3.8 -m pip install pandas python3.8 -m pip install lxml python3.8 -m pip install bs4</p>
+</blockquote>
+<p>run pip under 3.8</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>to get manuscript-object within manuscript-object</p>
+<blockquote>
+<p>git submodule update --init --recursive</p>
+</blockquote></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>FOR FUTURE: To run update.py, always make sure you are in manuscript-object submodule, in MASTER branch (it will often just go to last commit), and then separately git pull / git fetch manuscript-object</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Then to run update.py, run:</p>
+<blockquote>
+<p>git checkout master git pull --recurse-submodules</p>
+</blockquote></div>
+        <br>
+            <h2>gschare commented:</h2>
+        <div><p>To use virtual environments (do this BEFORE installing packages): Go to your project directory. <code>python3.8 -m pip install --user virtualenv python3.8 -m virtualenv .venv</code> (here, <code>.venv</code> is the name of the folder where we will keep our virtual environment. You can name it whatever you want) <code>source .venv/bin/activate</code> Now you're in the virtual environment and you can use <code>python3.8 -m pip install [PACKAGENAME]</code> to install packages in the virtual environment. Type <code>deactivate</code> to exit out of the virtual environment.</p></div>
+        <br>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1726: entry-metadata missing values</title>
+</head>
+<body>
+    <h1>#1726: entry-metadata missing values</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>While reviewing values in https://github.com/cu-mkp/m-k-manuscript-data/blob/master/metadata/entry_metadata.csv, we discovered a few issues that have resulted in missing or modified values of tagged terms.</p>
+<h2>To summarize the desired spec:</h2>
+<p>For each semantic tag type (al, bp, m, ms, tl, etc.), populate a cell with every verbatim term per entry. This is NOT unique terms, but every term (e.g., if a phrase is repeated verbatim, include it as many times as it appears). Create one cell each for tc, tcn, and tl per tag (i.e., tc<em>m, tcn</em>m, tl_m for m (material)).</p>
+<h2>missing and clipped values</h2>
+<p>Use div id 005r<em>2 as a test case. Entry-xml here: https://github.com/cu-mkp/m-k-manuscript-data/blob/master/entries/xml/tl/tl</em>005r_2.xml</p>
+<p>Current values for bp (body part) are:</p>
+<p>bp<em>tc | bp</em>tcn | bp_tl -- | -- | -- visaige; teston; lieulx secrets; poil de la barbe; doigt; petit doigt | visaige; teston; lieulx secrets; poil de la barbe; doigt; petit doigt | finger; face; nipple; hair; secret place</p>
+<p>While there are 7 strings in https://github.com/cu-mkp/m-k-manuscript-data/blob/master/entries/xml/tl/tl<em>005r</em>2.xml, tc and tcn are only picking up 6 and tl is 5. - update.py seems to be displaying unique terms only (e.g., "finger" is tagged twice but only appears once: <code>representation with your &lt;bp&gt;finger&lt;/bp&gt;, another &lt;bp&gt;finger&lt;/bp&gt;</code> - another problem either with some form of normalization or tags wrapped within another tag (e.g., "little finger" is missing - perhaps because it is also within <code>&lt;ms&gt;</code> tags or because it is filed under "finger") <code>your &lt;ms&gt;&lt;bp&gt;little finger&lt;/bp&gt;&lt;/ms&gt;, perfectly round</code> - regex problems with the character "s" (everything after an "s" is clipped due to regex white space character) <code>&lt;bp&gt;hairs of your beard&lt;/bp&gt;</code> --&gt; hair <code>&lt;bp&gt;secret places&lt;/bp&gt;</code> --&gt; secret place</p>
+<h2>nested tags issues</h2>
+<ul>
+<li><p>There are many instances throughout the manuscript where different tags are nested within each other, like the <code>&lt;ms&gt;&lt;bp&gt;</code> used above in 5r. These should be checked to make sure they are picked up as both ms and bp (i.e., populating both the cell for ms and and the cell for bp).</p></li>
+<li><p>More complicatedly, there are nested tags of the same type (i.e., <code>&lt;bp&gt;&lt;bp&gt;</code>)</p></li>
+</ul>
+<p>Use div id 013r<em>4 as a test case: https://github.com/cu-mkp/m-k-manuscript-data/blob/master/entries/xml/tl/tl</em>013r_4.xml</p>
+<p>Current values for m (material) are:</p>
+<p>m<em>tc | m</em>tcn | m_tl -- | -- | -- farine; poil de cheval; estamine de soye crue; soye creue; fumee du soufre; soye; soye crue jaulne &amp; naturelle; soye crue | farine; poil de cheval; estamine de soye crue; soye creue; fumee du soufre; soye; soye crue jaulne &amp; naturelle; soye crue | flour; smoke; tammy of raw silk; horsehair; silk; yellow raw &amp; natural silk</p>
+<p>While there are 9 material strings in https://github.com/cu-mkp/m-k-manuscript-data/blob/master/entries/xml/tl/tl<em>005r</em>2.xml, tl is only picking up 7 (tc and tcn seem to be picking up 9). - Here we have multiple nested m tags which are not being returned as separate values. For example, the string <code>&lt;m&gt;&lt;m&gt;raw silk&lt;/m&gt; whitened by &lt;m&gt;sulfur smoke&lt;/m&gt;&lt;/m&gt;</code> should return: 1. raw silk whitened by sulfur smoke; 2. raw silk; 3. sulfur smoke</p></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>re: nested tags, for a particularly complicated example:</p>
+<p>https://github.com/cu-mkp/m-k-manuscript-data/blob/32582b93455546cdefacadd5c7206370902748fa/ms-xml/tc/tc<em>p139v</em>preTEI.xml#L38-L41</p>
+<p>that is, <code>m/tl/m</code></p></div>
+        <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>re: nested tags: another edge case</p>
+<p>https://github.com/cu-mkp/m-k-manuscript-data/blob/32582b93455546cdefacadd5c7206370902748fa/ms-xml/tc/tc<em>p164v</em>preTEI.xml#L109-L111</p>
+<p>multiple <code>&lt;m&gt;</code>'s in an extended parent <code>&lt;m&gt;</code></p></div>
+        <br>
+            <h2>gschare commented:</h2>
+        <div><h3>Missing and clipped values:</h3>
+<p>Apparently solved by setting <code>apply_corrections=False</code> when generating the manuscript object in <code>update.py</code>. When True, this tells the manuscript to use the thesaurus corrections on the TL version, which cut off and ignore many tags. @njr2128, could you peruse the updated <a href="https://github.com/cu-mkp/m-k-manuscript-data/blob/issue1726/metadata/entry_metadata.csv"><code>entry-metadata.csv</code></a> in my branch to see if there are remaining problems?</p>
+<p>As noted, duplicate properties were being ignored because the Recipe object treats tags as a "set" (no duplicates) rather than a list. This was a simple one-line change and the problem went away.</p>
+<h3>Nested tags</h3>
+<p>No change was necessary to handle nested tags of different properties, but nesting the same properties got ignored because the regular expressions used to find the property tags were XML-unaware. Switching to an XML-aware parser (in this case BeautifulSoup with an <code>lxml</code> parser) solves the issue completely. I strongly suggest switching to the <code>lxml</code> Python package instead of regex for the rest of the manuscript-object functions. In addition to being aware of the XML, it includes lots of utility and control over encoding which would solve many other open issues, such as #1683, #1613, and possibly #1623 if we decide to use it to generate derivative <code>.txt</code> files. Indeed, Terry and I noticed while testing that in <code>entry-metadata.csv</code>, <code>&amp;amp;</code> was converted to <code>&amp;</code>.</p>
+<h3>Other</h3>
+<p>Make sure to use the <code>update.py</code> in <code>m-k-manuscript-data</code> from now on; the version in <code>manuscript-object</code> is waiting to be removed in a pull request.</p>
+<p>It was kinda painful to wait for the entire manuscript to regenerate every single time; maybe we should look into some form of caching, e.g. with Python Pickle or JSON for instances where we are testing functionality but not changing the original files?</p></div>
+        <br>
+    </body>
+</html>

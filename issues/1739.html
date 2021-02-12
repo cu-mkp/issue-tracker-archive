@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1739: editorial comment for 14v blank page</title>
+</head>
+<body>
+    <h1>#1739: editorial comment for 14v blank page</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>We have no good way to indicate to a user that 14v is a blank page. It currently renders as if there is an error (lizard image): <img src="https://user-images.githubusercontent.com/14779727/87572074-025a7500-c699-11ea-8cda-9eafc1f280a3.png" alt="image" /></p>
+<p>To work within our current render scheme, best option has been determined to be the addition of a comment anchor that tells the user this is a blank page in the original.</p>
+<p>i.e., add the following to the xml files: <code>&lt;ab&gt;&lt;comment&gt;&lt;/ab&gt;</code></p>
+<p>and create a new comment anchor with info about blank page.</p>
+<p>--&gt; this will then render as a red asterisk that, when clicked, opens dialogue box with comment about blank page</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Accidentally duplicated an issue already in place: #1729</p></div>
+        <br>
+    </body>
+</html>

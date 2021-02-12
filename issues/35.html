@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#35: Updates to Annotation metadata and GD file structure</title>
+</head>
+<body>
+    <h1>#35: Updates to Annotation metadata and GD file structure</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>To test and troubleshoot elements for render in the DCE, additional fields of metadata associated with an annotation as well as changes to the GD file structure and contents of annotation elements are needed. These are for features associated with: - thumbnail image to display as part of annotation index page - abstract that is in a file separate from any other text documents (to display as part of index and perhaps part of annotation itself) - bibliography that is in a file separate from any other text documents (to display as part of annotation and at the very end of the web page AFTER the end notes) - removal of the entries (transcription and translation) copied at the beginning of each annotation text. These will be replaced by indicators and references back to the edition folios/entries (or something similar)</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Updates have been made to <a href="https://docs.google.com/spreadsheets/d/100gc0_Fue9KdNmqNtGpmaWGWGNnOMjEe_rWgxEOocmE/edit?usp=sharing">Annotation tracking and metadata</a>.</p>
+<p>Three columns were added: (1) thumbnail<em>url (2) abstract</em>url (3) bib_url</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p><strong>Testing thumbnail functionality</strong></p>
+<p>Functionality desired: - If thumbnail is assigned in annotations metadata (as a URL from images folder), display that image. - If no URL exists, display a default image (suggestion: lizard)</p>
+<p>Actions taken: - All annotations except 1 have been assigned a thumbnail (all the same image from ann<em>001</em>fa<em>14 “Wax Tallow”) - Exception: ann</em>013<em>sp</em>15 “Too Thin Things” - Exception is to check default activity without thumbnail available</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p><strong>Testing functionality of abstract, bibliography, and no display of entries at beg of text</strong></p>
+<p>Actions taken: - An example dummy annotation was created with all of these elements, see issue #34 for full details - All other annotations have not been changed in the GD in any way - Metadata fields for abstract and bibliography for all other annotations have been left empty for now</p></div>
+        <br>
+    </body>
+</html>

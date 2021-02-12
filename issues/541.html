@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#541: qc of comments csv</title>
+</head>
+<body>
+    <h1>#541: qc of comments csv</h1>
+    <h2>opened by tcatapano</h2>
+    <div><p>see also #345</p>
+<p>check that ids in comments table correspond to comment elements in ms-xml, and vice versa</p></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>@njr2128, @thuchacz using this XPath expression to search files under ms-xml:</p>
+<p><code>//comment[ not(. = doc('../../metadata/comment_ids_srt.xml')//id )]</code> (that is, comment elements whose text does not equal the text of an id element in the file metadata/comment<em>ids</em>srt.xml -- which I generated from metadata/DCE_comment-tracking-Tracking.csv)</p>
+<p>I get these ids used in the xml files which are not in DCE_comment-tracking-Tracking.csv</p>
+<p>c156v<em>1 c157r</em>1 c<em>002v</em>06 c<em>009r</em>03 c<em>013v</em>02 c<em>043r</em>01 c<em>053r</em>02 c<em>055r</em>04 c<em>055r</em>05 c<em>108r</em>02 c<em>118r</em>011 c<em>123r</em>02 c<em>148v</em>01 c<em>160r</em>01 c<em>162r</em>08 p002r<em>2 p009r</em>1 p009r_2</p>
+<p>You can view the HTML report here:</p>
+<p>https://htmlpreview.github.io/?https://github.com/cu-mkp/m-k-manuscript-data/blob/master/qc/comment<em>ids</em>not<em>in</em>table.html</p>
+<p>(also in repo here: https://github.com/cu-mkp/m-k-manuscript-data/blob/master/qc/comment<em>ids</em>not<em>in</em>table.html)</p></div>
+        <br>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1926: Empty columns in entry_metadata.csv</title>
+</head>
+<body>
+    <h1>#1926: Empty columns in entry_metadata.csv</h1>
+    <h2>opened by Pantagrueliste</h2>
+    <div><p>entry_metadata.csv contains several errors.</p>
+<ol>
+<li>tagnames are not updated <code>ge_tl</code> instead of <code>el_tl</code></li>
+<li>Columns 'def<em>tl', and 'ge</em>tl' are empty al<em>tl 167 bp</em>tl 116 cn<em>tl 25 def</em>tl 0 env<em>tl 158 m</em>tl 827 md<em>tl 61 ms</em>tl 254 mu<em>tl 7 pa</em>tl 186 pl<em>tl 97 pn</em>tl 31 pro<em>tl 169 sn</em>tl 48 tl<em>tl 535 tmp</em>tl 125 wp<em>tl 50 de</em>tl 5 ge<em>tl 0 it</em>tl 5 la<em>tl 51 oc</em>tl 33 po_tl 17</li>
+</ol>
+<p>Am I using the wrong version? It was last updated in Nov 27 2020 at 1:16pm</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Confirming: <code>&lt;def&gt;</code> is an old, incorrect version of <code>&lt;df&gt;</code> (definition) and should be removed from entry-metadata (and should come up empty when searched for) <code>&lt;ge&gt;</code> is an old, incorrect version of `&lt;el&gt;(greek) and should be treated the same</p></div>
+        <br>
+            <h2>gschare commented:</h2>
+        <div><blockquote>
+<p>Confirming: <code>&lt;def&gt;</code> is an old, incorrect version of <code>&lt;df&gt;</code> (definition) and should be removed from entry-metadata (and should come up empty when searched for) <code>&lt;ge&gt;</code> is an old, incorrect version of `(greek) and should be treated the same</p>
+</blockquote>
+<p>The file with the tag names being currently used in <code>manuscript-object</code> is outdated. Confirming that I will update: - <code>&lt;ge&gt;</code> -&gt; <code>&lt;el&gt;</code> - <code>&lt;def&gt;</code> -&gt; <code>&lt;df&gt;</code></p>
+<p>The tags now being used in <code>manuscript-object</code> are: <code>py {     'animal': 'al',     'body_part': 'bp',     'currency': 'cn',     'definition': 'df',     'environment': 'env',     'material': 'm',     'medical': 'md',     'measurement': 'ms',     'music': 'mu',     'plant': 'pa',     'place': 'pl',     'personal_name': 'pn',     'profession': 'pro',     'sensory': 'sn',     'tool': 'tl',     'time': 'tmp',     'weapon': 'wp',     'german': 'de',     'greek': 'el',     'italian': 'it',     'latin': 'la',     'occitan': 'oc',     'poitevin': 'po' }</code></p></div>
+        <br>
+    </body>
+</html>

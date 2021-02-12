@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#767: Inconsistent markup across tc, tcn, tl on 120r</title>
+</head>
+<body>
+    <h1>#767: Inconsistent markup across tc, tcn, tl on 120r</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>Tc and tcn have one version of an added header for 120r_3 Nightingales while tl has a different one.</p>
+<p>Tc/tcn:</p>
+<blockquote>
+<p><code>&lt;id&gt;</code>p120r_3<code>&lt;/id&gt;</code> <code>&lt;head&gt;&lt;del&gt;</code>Il<code>&lt;/del&gt;&lt;al&gt;&lt;add&gt;</code>R<code>&lt;/add&gt;</code>ossignol<code>&lt;/al&gt;&lt;/head&gt;</code></p>
+</blockquote>
+<p>tl:</p>
+<blockquote>
+<p><code>&lt;id&gt;</code>p120r_3<code>&lt;/id&gt; &lt;head&gt;&lt;del&gt;</code>Il<code>&lt;/del&gt;&lt;add&gt;&lt;al&gt;</code>Nightingale<code>&lt;/al&gt;&lt;/add&gt;&lt;/head&gt;</code></p>
+</blockquote>
+<p>This is most obvious in the edition rendering: <img src="https://user-images.githubusercontent.com/14779727/60216409-f60a3c80-9837-11e9-857e-c28fdf78c59f.png" alt="image" /></p>
+<p><img src="https://user-images.githubusercontent.com/14779727/60216389-e985e400-9837-11e9-937d-1073e4257fd4.png" alt="image" /></p>
+<p>The correct markup should be determined and then implemented across all three versions.</p></div>
+    <br>
+            <h2>TillmannTaape commented:</h2>
+        <div><p>TC and TCN are correct; I changed TL to <code>&lt;head&gt;&lt;del&gt;Il&lt;/del&gt;&lt;add&gt;&lt;al&gt;N&lt;/add&gt;ightingale&lt;/al&gt;&lt;/head&gt;</code>, reflecting the addition of only the initial letter.</p></div>
+        <br>
+    </body>
+</html>

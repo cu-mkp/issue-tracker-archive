@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#118: Check consistency of measurement tag, overlapping measurement, coin, and temporal tags</title>
+</head>
+<body>
+    <h1>#118: Check consistency of measurement tag, overlapping measurement, coin, and temporal tags</h1>
+    <h2>opened by Pantagrueliste</h2>
+    <div><p>Measurement tag, and overlapping measurement, coin, temporal tags need to be checked for consistency and outliers - <strong>TWO ACTIONS</strong>:</p>
+<ol>
+<li>Overlapping tags, eg measurement and temporal (“leave for a day”; measurement and coin (“add spanish coin” with a specific size and amount of silver)</li>
+<li>Also need to check across the three versions (tc, tcn, tl) to make sure same markup is applied to each version</li>
+</ol>
+<p>THC task help</p></div>
+    <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>Used XPath/XQuery Builder in Oxygen to verify: 1) across all three versions, tags are in this order: <code>&lt;ms&gt;&lt;cn&gt;&lt;fr&gt;&lt;/fr&gt;&lt;/cn&gt;&lt;/ms&gt;</code>, with extremely few exceptions, as dictated by the text. 2) across all three versions, all nested measurement and temporal tags in this order: <code>&lt;ms&gt;&lt;tmp&gt;&lt;/tmp&gt;&lt;/ms&gt;</code></p>
+<p>PROBLEMS 9v and 170v, <code>"&lt;cn&gt;livre..."</code> is not translated as pound. There is nothing in the translation protocol about this.</p>
+<p>36r, 60v, 95r, 104r, <code>"&lt;cn&gt;liard..."</code> is inconsistent—sometimes in <code>&lt;fr&gt;</code> tags, sometimes not. "general rules" section of translation protocol says leave all coins in original language and give <code>&lt;fr&gt;</code> tags, but entry for "liard" gives the English equivalent "liard." NB: Cotgrave doesn't give a translation; he only discusses its value. It is, however, a word in the OED...</p></div>
+        <br>
+    </body>
+</html>

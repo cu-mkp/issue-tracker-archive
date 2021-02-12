@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1614: update html: GNS - Field Notes SP16</title>
+</head>
+<body>
+    <h1>#1614: update html: GNS - Field Notes SP16</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>There are embedded GD docs in these field notes: http://fieldnotes.makingandknowing.org/mainSpace/GNS%20-%20Field%20Notes%20SP16%20-%20Experimental%20Protocols.html</p>
+<p>Some are owned by columbia accounts and prompt logins within the page. Remove the embedded pages and instead insert as regular text</p>
+<p>Once done, reupload to s3 bucket to retain same web address</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>FIRST ATTEMPT:</p>
+<ul>
+<li>each embedded GD doc was opened in GD</li>
+<li>using GD interface, downloaded as html</li>
+<li>copied and pasted the resulting html content into the original field notes doc in place of the iframe of the embedded doc</li>
+<li>this worked for the very first one - when I had only pasted one in and reuploaded to s3 to check</li>
+<li>when I then did this for all of the docs within the page and reuploaded to s3, it seems the GD-generated html overlapped itself: chunks of text were appearing on top of one another, tables and bullets were inserted from one doc into another, etc.</li>
+</ul></div>
+        <br>
+    </body>
+</html>

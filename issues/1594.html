@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1594: 94v: two captions not rendering in tcn and tl</title>
+</head>
+<body>
+    <h1>#1594: 94v: two captions not rendering in tcn and tl</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>The captions for the two figures labeled "c" and "d" are not rendering in the tl and tcn, despite being there as captions in the xml.</p>
+<p><img src="https://user-images.githubusercontent.com/14779727/78388854-bc791580-75af-11ea-9275-323daa14a7c9.png" alt="image" /></p>
+<p><strong>These are fine in tc:</strong> <img src="https://user-images.githubusercontent.com/14779727/78389008-fb0ed000-75af-11ea-9620-9a0682cb0543.png" alt="image" /></p></div>
+    <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>for the record: if a figure is inside an <code>&lt;ab&gt;</code>, then the caption won't render if a figure is outside an <code>&lt;ab&gt;</code>, as a lone element within a <code>&lt;div&gt;</code>, then the caption will render, below and centered</p></div>
+        <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>94v is satisfactorily resolved. The prose captions are rendering. The 'a' 'b' captions are not—it would cause too much trouble on the page for too little payoff. Closing.</p></div>
+        <br>
+    </body>
+</html>

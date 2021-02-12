@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#534: Extractions from language elements</title>
+</head>
+<body>
+    <h1>#534: Extractions from language elements</h1>
+    <h2>opened by tcatapano</h2>
+    <div><p>From @thuchacz</p>
+<p>Extract: 1. The contents of all <code>&lt;la&gt;&lt;/la&gt;</code> tags from either the TC, TCN, or TL (there are 109 instances in each of the 3 versions, so I don't think it matters which you use) 1. I need these because I need to assign to TT and CAG the translation of Latin words, phrases, sentences and also check them against existing <code>&lt;comment&gt;</code> tags. Extraction would help me immensely.</p>
+<ol>
+<li>The contents of all <code>&lt;fr&gt;&lt;/fr&gt;</code> tags from the TL. What I need here is trickier. Before the merges you just committed, there were 1660 <code>&lt;fr&gt;</code> tags used in the TL, 789 of which were <code>&lt;del&gt;&lt;fr&gt;&lt;/fr&gt;&lt;/del&gt;</code> nests, which I'm not interested in at all. Is there a way for you to provide me the strings inside <code>&lt;fr&gt;&lt;/fr&gt;</code> but not in the <code>&lt;del&gt;&lt;fr&gt;&lt;/fr&gt;&lt;/del&gt;</code>? If not, I can work around this (provided they are extracted in order they appear in the folios), but it will simply take me longer.</li>
+</ol></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>@thuchacz here are the lists: <a href="https://github.com/cu-mkp/m-k-manuscript-data/files/3142507/french.csv.txt">french.csv.txt</a> <a href="https://github.com/cu-mkp/m-k-manuscript-data/files/3142508/latin.csv.txt">latin.csv.txt</a></p>
+<p>FYI, I used these XPATH expressions: <code>for $la in //la return concat(replace($la, '\n', '  ' ), '|', $la/preceding::page[1] )</code> and</p>
+<p><code>for $fr in //fr[not(parent::del)] return concat(replace($fr, '\n', '  ' ), '|', $fr/preceding::page[1] )</code></p></div>
+        <br>
+    </body>
+</html>
