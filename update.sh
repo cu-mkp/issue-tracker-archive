@@ -63,7 +63,7 @@ depaginate_and_write () {
     echo "]" >> $OUTFILE
 }
 
-PER_PAGE=2
+PER_PAGE=100
 
 depaginate_and_write "https://api.github.com/repos/cu-mkp/m-k-manuscript-data/issues?state=all&direction=asc&sort=created&page=1&per_page=$PER_PAGE" $OUTFILE_ISSUES
 
