@@ -4,7 +4,7 @@ import qualified Text.Pandoc as P
 import qualified Text.Pandoc.Templates as PT
 import Text.DocLayout (render) -- Used to render Doc type into Text type.
 --import System.IO
-import System.Directory (createDirectory, getDirectoryContents, doesDirectoryExist, copyFile)
+import System.Directory (createDirectory, removeDirectoryRecursive, getDirectoryContents, doesDirectoryExist, copyFile)
 import System.FilePath ((</>))
 import Control.Monad (forM_)
 import Control.Arrow ((***))
@@ -113,7 +113,10 @@ templatesDir :: FilePath
 templatesDir = "./_templates/"
 
 targetDir :: FilePath
-targetDir = "./_site/"
+targetDir = "./issue-tracker-archive/" --"./_site/"
+
+indexFile :: FilePath
+indexFile = "./index.html"
 
 loadTemplate :: FilePath -> IO (PT.Template T.Text)
 loadTemplate filepath = do
@@ -125,8 +128,8 @@ loadTemplate filepath = do
 issueTemplateIO :: IO (PT.Template T.Text)
 issueTemplateIO = loadTemplate $ templatesDir </> "issue.html"
 
-issuesIndexTemplate :: IO (PT.Template T.Text)
-issuesIndexTemplate = loadTemplate $ templatesDir </> "issuesIndex.html"
+issuesIndexTemplateIO :: IO (PT.Template T.Text)
+issuesIndexTemplateIO = loadTemplate $ templatesDir </> "issuesIndex.html"
 
 mdToHtml :: T.Text -> Either P.PandocError T.Text
 mdToHtml md =P.runPure $ do
@@ -134,35 +137,45 @@ mdToHtml md =P.runPure $ do
     P.writeHtml5String P.def doc
 
 makeContext :: Issue -> [Comment] -> J.Value
-makeContext issue comments = J.object [ T.pack "issue" J..= issue
-                                      , T.pack "comments" J..= comments ]
+makeContext issue comments = J.object [ "issue" J..= issue
+                                      , "comments" J..= comments ]
 
 copyAssets :: IO ()
 copyAssets = copyDir assetsDir (targetDir </> "assets/")
+
+copyIndex :: IO ()
+copyIndex = copyFile indexFile (targetDir </> "index.html")
 
 makeIssuePage :: J.Value -> IO (T.Text)
 makeIssuePage context = do
     template <- issueTemplateIO
     let page = render Nothing $ PT.renderTemplate template context
-    TIO.putStrLn page
     return page
-    --Right template <- compileTemplate templatesDir templateText
-    --md <- TIO.readFile mdFile
-    --body <- convertMarkdownToHtml md
-    --let doc = renderTemplate template (makeContext body)
-    --TIO.writeFile htmlFile (render Nothing doc)
+
+makeIssuesIndexPage :: [Issue] -> IO (T.Text)
+makeIssuesIndexPage issues = do
+    template <- issuesIndexTemplateIO
+    let context = J.object [ "issues" J..= issues ]
+        page = render Nothing $ PT.renderTemplate template context
+    return page
+
+writePage :: FilePath -> T.Text -> IO ()
+writePage = TIO.writeFile
 
 main :: IO ()
 main = do
     issues <- issuesIO
     comments <- commentsIO
-    let firstIssue = head . filter (\x -> issueNumber x == 1942) $ issues
-        firstComments = fromMaybe [] (lookup (issueUrl firstIssue) comments)
 
-    makeIssuePage (makeContext firstIssue firstComments)
-    return ()
-    --Right template <- compileTemplate templatesDir templateText
-    --md <- TIO.readFile mdFile
-    --body <- convertMarkdownToHtml md
-    --let doc = renderTemplate template (makeContext body)
-    --TIO.writeFile htmlFile (render Nothing doc)
+    targetExists <- doesDirectoryExist targetDir
+    if targetExists then removeDirectoryRecursive targetDir else return ()
+    createDirectory targetDir
+    createDirectory $ targetDir </> "issues"
+    copyAssets
+    copyIndex
+    writePage (targetDir </> "issues" </> "index.html") =<< (makeIssuesIndexPage issues)
+
+    mapM_ (\issue -> do
+        let issueComments = fromMaybe [] (lookup (issueUrl issue) comments)
+        issuePage <- makeIssuePage (makeContext issue issueComments)
+        writePage (targetDir </> "issues" </> (show (issueNumber issue) ++ ".html")) issuePage) issues
