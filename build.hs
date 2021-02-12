@@ -16,6 +16,7 @@ import qualified Data.Aeson as J
 import qualified Data.Aeson.Types as J (parseMaybe, parseEither, emptyObject)
 import Data.HashMap.Strict as HM (empty, toList)
 import Data.Maybe (fromJust, fromMaybe)
+import Data.Either (either)
 import Data.List (groupBy)
 import Data.Function (on)
 
@@ -38,13 +39,14 @@ data Comment = Comment
 
 instance J.FromJSON Issue where
   parseJSON = J.withObject "Issue" $ \obj -> do
-      issueNumber <- obj J..: "number"
-      issueId     <- obj J..: "id"
-      issueUrl    <- obj J..: "url"
-      issueTitle  <- obj J..: "title"
-      userObj     <- obj J..: "user"
-      issueAuthor <- userObj J..: "login"
-      issueBody   <- obj J..: "body"
+      issueNumber  <- obj J..: "number"
+      issueId      <- obj J..: "id"
+      issueUrl     <- obj J..: "url"
+      issueTitle   <- obj J..: "title"
+      userObj      <- obj J..: "user"
+      issueAuthor  <- userObj J..: "login"
+      rawIssueBody <- obj J..: "body"
+      let issueBody = either (const Nothing) Just (mdToHtml . fromMaybe "" $ rawIssueBody)
       return (Issue issueNumber issueId issueUrl issueTitle issueAuthor issueBody)
 
 instance J.ToJSON Issue where
@@ -63,7 +65,8 @@ instance J.FromJSON Comment where
       commentIssueUrl  <- obj J..: "issue_url"
       userObj          <- obj J..: "user"
       commentAuthor    <- userObj J..: "login"
-      commentBody      <- obj J..: "body"
+      rawCommentBody   <- obj J..: "body"
+      let commentBody = either (const Nothing) Just (mdToHtml . fromMaybe "" $ rawCommentBody)
       return (Comment commentId commentUrl commentIssueUrl commentAuthor commentBody)
 
 instance J.ToJSON Comment where
@@ -125,12 +128,10 @@ issueTemplateIO = loadTemplate $ templatesDir </> "issue.html"
 issuesIndexTemplate :: IO (PT.Template T.Text)
 issuesIndexTemplate = loadTemplate $ templatesDir </> "issuesIndex.html"
 
-mdToHtml :: T.Text -> IO (T.Text)
-mdToHtml md = do
-    result <- P.runIO $ do
-        doc <- P.readMarkdown P.def md
-        P.writeHtml5String P.def doc
-    P.handleError result
+mdToHtml :: T.Text -> Either P.PandocError T.Text
+mdToHtml md =P.runPure $ do
+    doc <- P.readMarkdown P.def md
+    P.writeHtml5String P.def doc
 
 makeContext :: Issue -> [Comment] -> J.Value
 makeContext issue comments = J.object [ T.pack "issue" J..= issue
@@ -155,9 +156,8 @@ main :: IO ()
 main = do
     issues <- issuesIO
     comments <- commentsIO
-    let firstIssue = last issues
-        firstIssueUrl = issueUrl firstIssue :: T.Text
-        firstComments = fromMaybe [] (lookup firstIssueUrl comments)
+    let firstIssue = head . filter (\x -> issueNumber x == 1942) $ issues
+        firstComments = fromMaybe [] (lookup (issueUrl firstIssue) comments)
 
     makeIssuePage (makeContext firstIssue firstComments)
     return ()
