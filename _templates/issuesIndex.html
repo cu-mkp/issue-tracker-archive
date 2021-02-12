@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>Index of issues</title>
+</head>
+<body>
+    $for(issues)$
+    <p><a href="/issue-tracker-archive/issues/$it.number$.html">#$it.number$: $it.title$</a></p>
+    $endfor$
+</body>
+</html>
+
