@@ -171,11 +171,15 @@ main = do
     if targetExists then removeDirectoryRecursive targetDir else return ()
     createDirectory targetDir
     createDirectory $ targetDir </> "issues"
+
     copyAssets
     copyIndex
-    writePage (targetDir </> "issues" </> "index.html") =<< (makeIssuesIndexPage issues)
+
+    issuesIndexPage <- makeIssuesIndexPage issues
+    writePage (targetDir </> "issues" </> "index.html") issuesIndexPage
 
     mapM_ (\issue -> do
         let issueComments = fromMaybe [] (lookup (issueUrl issue) comments)
         issuePage <- makeIssuePage (makeContext issue issueComments)
-        writePage (targetDir </> "issues" </> (show (issueNumber issue) ++ ".html")) issuePage) issues
+        writePage (targetDir </> "issues" </> (show (issueNumber issue) ++ ".html")) issuePage)
+        issues
