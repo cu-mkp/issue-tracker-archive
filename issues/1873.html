@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1873: entry-metadata: treatment of &lt;del&gt;</title>
+</head>
+<body>
+    <h1>#1873: entry-metadata: treatment of &lt;del&gt;</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>For each heading, we have been just stripping <code>&lt;del&gt;</code> tags and displaying their text along with the rest of the heading.</p>
+<p>NEW request: remove all words within <code>&lt;del&gt;</code> tags so that we are left with "clean" headings for entry-metadata.</p>
+<h2>E.g., Currently, list of entries has:</h2>
+<p><img src="https://user-images.githubusercontent.com/14779727/90686980-2120ce00-e23a-11ea-8d60-2f4db9b95570.png" alt="image" /></p>
+<h2>For the heading:</h2>
+<p><img src="https://user-images.githubusercontent.com/14779727/90687029-34339e00-e23a-11ea-8982-8c40f1b0f8d0.png" alt="image" /></p>
+<h2><strong>DESIRED</strong>: change "Pour ga cach cages" to "Pour cages" across all 3 versions (tc, tcn, tl)</h2></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Deleted words are still appearing in entry-metadata as of this posting. Need to re-implement in the generation of entry-metadata in https://github.com/cu-mkp/manuscript-object (looks like this happened as a consequence of severing derivative generation within manuscript-data repo and instead doing so only in manuscript-object)</p></div>
+        <br>
+            <h2>gschare commented:</h2>
+        <div><p><a href="https://github.com/cu-mkp/manuscript-object/issues/84">Should be fixed now</a>. When I tested regenerating <code>entry-metadata.csv</code> it worked.</p></div>
+        <br>
+    </body>
+</html>

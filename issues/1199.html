@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1199: convert GD field notes to html and add to fieldnotes.makingandknowing - docx/gdoc</title>
+</head>
+<body>
+    <h1>#1199: convert GD field notes to html and add to fieldnotes.makingandknowing - docx/gdoc</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>All field notes from Fall 2018 are housed in GD, and were not included in the wikispace archive subdomain under the Project's website.</p>
+<p>These need to be converted from googledoc / docx to html and added to the subdomain so that they can be linked to from annotations</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Downloaded entire directory "Field Notes Fall 2018" within "Student Files" Extracted the zipped file Sanitized file names: <code>detox -r Field\ Notes\ Fall\ 2018</code> [<code>njr2128@LAPTOP-0SMCQ75L:/mnt/c/users/naomi/Downloads$ detox -r Field\ Notes\ Fall\ 2018</code>]</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>recursively find all docx files and grab their basenames: <code>`for DOCX in `find Field_Notes_Fall_2018 -name '*.docx'`;do BASENAME=`basename -s .docx $DOCX`;echo $BASENAME;done`</code></p>
+<p>In NJR's command line: <code>njr2128@LAPTOP-0SMCQ75L:/mnt/c/users/naomi/Downloads$ for DOCX in `find Field_Notes_Fall_2018 -name '*.docx'`;do BASENAME=`basename -s .docx $DOCX`;echo $BASENAME;done</code></p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>For every .docx file, in /tmp create directory using basename of file, creating a media directory for all linked media in the same result directory <code>for DOCX in `find Field_Notes_Fall_2018 -name '*.docx'`;do BASENAME=`basename -s .docx $DOCX`;pandoc "$DOCX" --extract-media=/tmp/"$BASENAME" -f docx -t html -s -o /tmp/"$BASENAME"/"$BASENAME".html;done</code></p>
+<p>In NJR command line: <code>njr2128@LAPTOP-0SMCQ75L:/mnt/c/users/naomi/Downloads$ for DOCX in `find Field_Notes_Fall_2018 -name '*.docx'`;do BASENAME=`basename -s .docx $DOCX`;pandoc "$DOCX" --extract-media=/tmp/"$BASENAME" -f docx -t html -s -o /tmp/"$BASENAME"/"$BASENAME".html;done</code></p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>need to rewrite URLs for linked media to make them relative.</p>
+<p>Use oXygen. For now, open any project, and use find/replace function, but look in specific directory.</p>
+<h2>step 1: go to "file" and then "Find/Replace in Files":</h2>
+<p><img src="https://user-images.githubusercontent.com/14779727/68615882-e6f7f400-0491-11ea-9901-78a23def19fd.png" alt="image" /></p>
+<h2>step 2: change specified path to the directory where html files are:</h2>
+<p><img src="https://user-images.githubusercontent.com/14779727/68615976-160e6580-0492-11ea-8b3c-119e821dfbf0.png" alt="image" /></p>
+<h2>step 3: choose specified path/directory (in this case, NJR's downloads folder, under a folder "tmp"):</h2>
+<p><img src="https://user-images.githubusercontent.com/14779727/68616024-32aa9d80-0492-11ea-808a-a728fc6b4572.png" alt="image" /></p></div>
+        <br>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1245: create search functionality explanation</title>
+</head>
+<body>
+    <h1>#1245: create search functionality explanation</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>Based on:</p>
+<p><strong>FROM NICK</strong> Summary of new search features: The search system now looks for entries which contain all of the terms entered into the search bar. If the terms are enclosed in quotes, the terms will be treated as a phrase. Only entries containing the entire phrase will be matched. Search results can now be ordered by folio ID or relevance. Also, the search system no longer attempts to stem text. This means that it will only match terms that are pluralized and conjugated the same as the search term. Lastly, "stop words" have been eliminated, so common words will now match (the, or, etc.)</p>
+<p><strong>Notes from NJR</strong> AND searches implemented</p>
+<blockquote>
+<p>Burnt and lead</p>
+</blockquote>
+<p>Phrase search</p>
+<blockquote>
+<p>“Burnt lead”</p>
+</blockquote>
+<p>EDGE CASES</p>
+<blockquote>
+<p>“Or couleur = phrase search Or couleur” = AND search The “gold leaf” = AND search for “the” with phrase search of “gold leaf”</p>
+</blockquote>
+<p>Stop words eliminated</p>
+<blockquote>
+<p>Or</p>
+</blockquote>
+<p>Stemmers in use</p>
+<blockquote>
+<p>Guard Guards —&gt; Return different results No way to return both Search of [guards guard] will only return entries that have BOTH these words (AND not OR)</p>
+</blockquote>
+<p>Special characters cannot be searched for (including alchemical symbols)</p>
+<blockquote>
+<p>Work-around: list occurrences in the separate resource dedicated to them</p>
+</blockquote></div>
+    <br>
+            <h2>ps2270 commented:</h2>
+        <div><p>Done here: https://docs.google.com/document/d/16Lds3JoQd9qkRlTtMHu1GzONOTcuDxLot6RT-YxEZvI/edit @tcatapano and @njr2128 pls sign off on this</p></div>
+        <br>
+    </body>
+</html>

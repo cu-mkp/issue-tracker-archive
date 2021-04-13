@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1452: duplicate divs with ids (entries) lacking heads without &lt;cont&gt;</title>
+</head>
+<body>
+    <h1>#1452: duplicate divs with ids (entries) lacking heads without &lt;cont&gt;</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>These are being treated as entries without heads If continueds are put in, it will resolve the problem but introduce continues/continued in rendering</p>
+<p>e.g., https://github.com/cu-mkp/m-k-manuscript-data/blob/429227a44e30a6292c2db5d766cf593cfeec73c2/ms-xml/tc/tc<em>p001r</em>preTEI.xml#L209</p>
+<p>xpath query</p>
+<blockquote>
+<p>//div[@id][not(head)][not(@continues)][not(@continued)]</p>
+</blockquote></div>
+    <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>Terry was going to introduce a new attribute from TEI: "part" Not sure if this got implemented.</p>
+<p>On Wed, Dec 18, 2019 at 2:17 PM Naomi Rosenkranz <a href="mailto:notifications@github.com" class="email">notifications@github.com</a> wrote:</p>
+<blockquote>
+<p>These are being treated as entries without heads If continueds are put in, it will resolve the problem but introduce continues/continued in rendering</p>
+<p>e.g.,</p>
+<p>https://github.com/cu-mkp/m-k-manuscript-data/blob/429227a44e30a6292c2db5d766cf593cfeec73c2/ms-xml/tc/tc<em>p001r</em>preTEI.xml#L209</p>
+<p>xpath query</p>
+<p>//div[@id <a href="https://github.com/id" class="uri">https://github.com/id</a>][not(head)][not(@continues <a href="https://github.com/continues" class="uri">https://github.com/continues</a>)][not(@continued <a href="https://github.com/continued" class="uri">https://github.com/continued</a>)]</p>
+<p>— You are receiving this because you are subscribed to this thread. Reply to this email directly, view it on GitHub <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/1452?email_source=notifications&amp;email_token=AFTLQAVI5F6TFXJC7GJAPZ3QZJZLRA5CNFSM4J4P24X2YY3PNVWWK3TUL52HS4DFUVEXG43VMWVGG33NNVSW45C7NFSM4IBNXC7Q" class="uri">https://github.com/cu-mkp/m-k-manuscript-data/issues/1452?email_source=notifications&amp;email_token=AFTLQAVI5F6TFXJC7GJAPZ3QZJZLRA5CNFSM4J4P24X2YY3PNVWWK3TUL52HS4DFUVEXG43VMWVGG33NNVSW45C7NFSM4IBNXC7Q</a>, or unsubscribe <a href="https://github.com/notifications/unsubscribe-auth/AFTLQAU2VLMTALOYVPGBQ3DQZJZLRANCNFSM4J4P24XQ" class="uri">https://github.com/notifications/unsubscribe-auth/AFTLQAU2VLMTALOYVPGBQ3DQZJZLRANCNFSM4J4P24XQ</a> .</p>
+</blockquote></div>
+        <br>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#515: well formedness errors in xml files</title>
+</head>
+<body>
+    <h1>#515: well formedness errors in xml files</h1>
+    <h2>opened by tcatapano</h2>
+    <div><p>There are a number of files under ms-xml which are not well-formed XML.</p>
+<p>``` ms-xml/tc/tc<em>p019r</em>preTEI.xml:35: parser error : Opening and ending tag mismatch: ab line 12 and ms balle&lt;/ms&gt; a la culasse&lt;/ms&gt; &amp; en ostent quelque fois sur le ^ ms-xml/tc/tc<em>p019r</em>preTEI.xml:40: parser error : Opening and ending tag mismatch: div line 6 and ab que lon leur baille&lt;/ab&gt; ^ ms-xml/tc/tc<em>p019r</em>preTEI.xml:212: parser error : Opening and ending tag mismatch: root line 1 and div &lt;/div&gt; ^ ms-xml/tc/tc<em>p019r</em>preTEI.xml:213: parser error : Extra content at the end of the document &lt;/root&gt; ^ ms-xml/tc/tc<em>p170v</em>preTEI.xml:27: parser error : Opening and ending tag mismatch: div line 6 and ab un tiers &lt;del&gt;sur qu&lt;/del&gt;&lt;/ab&gt; ^ ms-xml/tc/tc<em>p170v</em>preTEI.xml:34: parser error : Opening and ending tag mismatch: root line 1 and div &lt;/div&gt; ^ ms-xml/tc/tc<em>p170v</em>preTEI.xml:36: parser error : Extra content at the end of the document &lt;div&gt; ^ ms-xml/tcn/tcn<em>p147v</em>preTEI.xml:16: parser error : Opening and ending tag mismatch: head line 10 and m et &lt;m&gt;vieulx K&lt;/m&gt;&lt;/m&gt;&lt;comment&gt;c<em>086v</em>03&lt;/comment&gt; et quelque R&lt;ill/&gt;&lt;comment&gt;c<em> ^ ms-xml/tcn/tcn</em>p147v<em>preTEI.xml:17: parser error : Opening and ending tag mismatch: div line 6 and head xii&lt;/head&gt; ^ ms-xml/tcn/tcn</em>p147v<em>preTEI.xml:39: parser error : Opening and ending tag mismatch: root line 1 and div &lt;/div&gt; ^ ms-xml/tcn/tcn</em>p147v<em>preTEI.xml:41: parser error : Extra content at the end of the document &lt;div&gt; ^ ms-xml/tl/tl</em>p093r<em>preTEI.xml:68: parser error : Opening and ending tag mismatch: tl line 68 and m &lt;ab&gt; &lt;del&gt;&lt;m&gt;Ashes&lt;/m&gt;&lt;/del&gt; &lt;m&gt;well &lt;tl&gt;pulverized tallow&lt;/m&gt; molds&lt;/tl&gt; &amp; ^ ms-xml/tl/tl</em>p093r_preTEI.xml:68: parser error : Opening and ending tag mismatch: m line 68 and tl &lt;ab&gt; &lt;del&gt;&lt;m&gt;Ashes&lt;/m&gt;&lt;/del&gt; &lt;m&gt;well &lt;tl&gt;pulverized tallow&lt;/m&gt; molds&lt;/tl&gt; &amp; ^</p>
+<p>```</p>
+<p>As a reminder, please fix any well-formedness files before closing files. Well-formedness errors are indictated by red bars on the sidebar of oXygen.</p>
+<p>Well-formedness validation can also be performed by doing the following (https://www.oxygenxml.com/doc/versions/20.1/ug-author/topics/checking-xml-well-formedness.html#checking-xml-well-formedness__check<em>for</em>wellformedness)</p>
+<ul>
+<li>Select the Check Well-Formedness (Ctrl + Shift + W (Command + Shift + W on OS X)) action from the Validation drop-down menu on the toolbar (or the Document &gt; Validate menu).</li>
+<li>A selection of files can be checked for well-formedness by selecting the Check Well-Formedness action from the Validate submenu when invoking the contextual menu in the Project view.</li>
+</ul></div>
+    <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>@tcatapano All of the xml files are currently well-formed. I'm not sure what this is referring to.</p>
+<p>T.</p></div>
+        <br>
+    </body>
+</html>

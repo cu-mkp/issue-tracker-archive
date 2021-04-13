@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1541: cut-off captions: check for invisible line break and remove</title>
+</head>
+<body>
+    <h1>#1541: cut-off captions: check for invisible line break and remove</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>2 cut-off caption problems were diagnosed by NJR and Nick as actual line breaks (hard returns) at the end of a line within a caption. These looked invisible because the spacing of the sentence naturally broke off at that point.</p>
+<p>E.g., for Captions<em>ann</em>317<em>ie</em>19<em>Munoz</em>Fraysse, caption 2 was cut off after "Jean" - this was because there was a hard return after this word and before "Rancy"</p>
+<p>BEFORE FIX</p>
+<blockquote>
+<p>Fig. 2: Griffoul fountain in place Saint-Étienne of Toulouse, 1547–1549 (original fountain by Jean</p>
+</blockquote>
+<blockquote>
+<p>Rancy), 1593 (obelisk by Antoine Bachelier), 1601 (bronze elements by Barthélémy Fraysse), 1649</p>
+</blockquote>
+<blockquote>
+<p>(bronze decoration by Pierre Affre). Photo: Sarah Muñoz.</p>
+</blockquote>
+<p>AFTER FIX:</p>
+<blockquote>
+<p>Fig. 2: Griffoul fountain in place Saint-Étienne of Toulouse, 1547–1549 (original fountain by Jean Rancy), 1593 (obelisk by Antoine Bachelier), 1601 (bronze elements by Barthélémy Fraysse), 1649 (bronze decoration by Pierre Affre). Photo: Sarah Muñoz.</p>
+</blockquote>
+<p>But to the naked eye in GD, these looked identical.</p>
+<p>For any identified cut-off captions, try deleting the space after the cut-off word and adding back just one space character.</p>
+<p>To test, use a text editor that does not wrap text in the same way as GD (e.g., Notepad, TextEdit, oXygen, Atom, Sublime, etc.)</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>See also https://github.com/cu-mkp/making-knowing-edition/issues/340</p></div>
+        <br>
+    </body>
+</html>

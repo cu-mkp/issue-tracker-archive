@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1270: add n-attribute for folio display label</title>
+</head>
+<body>
+    <h1>#1270: add n-attribute for folio display label</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>make attribute that changes folio: 004v to 4v</p>
+<p>Add to root element</p>
+<p>--&gt; could then also be used to: pull in entry-metadata (#1088)</p></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>In root element add "n" attribute with unpadded version of value in page attribute. E.g. ,</p>
+<p>https://github.com/cu-mkp/m-k-manuscript-data/blob/e212e4f5aa445063b5bfe4e29362aeaa0a476cf7/ms-xml/tc/tc<em>p001r</em>preTEI.xml#L1</p>
+<p><code>&lt;root page="001r" n="1r" image="http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f7.image"&gt;</code></p></div>
+        <br>
+    </body>
+</html>

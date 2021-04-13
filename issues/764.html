@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#764: p099r_2 &quot;Lean white sand&quot; not a separate entry?</title>
+</head>
+<body>
+    <h1>#764: p099r_2 &quot;Lean white sand&quot; not a separate entry?</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>This appears to be inline italic script, as the "header" is part of the first sentence:</p>
+<blockquote>
+<p><code>&lt;head&gt;</code><strong>Lean white sand</strong><code>&lt;/head&gt;</code> Without bond renders well proper for casting...</p>
+</blockquote>
+<p>The previous entry is "Founding", which discusses many types of sands and their properties.</p>
+<p>This has implications for comment c<em>099r</em>01, "Text block starts immediately after title"</p>
+<p>Thoughts?</p></div>
+    <br>
+            <h2>ps2270 commented:</h2>
+        <div><p>We could treat this in the same way we treated the ones in the other sand recipes, simply mark with <code>&lt;emph&gt;</code> I think this is the right solution.</p></div>
+        <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>I agree.</p>
+<p>I have changed the markup accordingly, removing its separate <code>&lt;div&gt;</code> and ID, and swapping it's <code>&lt;head&gt;</code> tags for <code>&lt;emph&gt;</code> ones.</p>
+<p>I've changed the comments tracking sheet for comment c<em>099r</em>01 to a red line with a delete recommendation and I've removed the comment anchor (prematurely, I know).</p>
+<p>@njr2128 we've now demoted it from its current status as an entry. Can you adjust the entries tracking sheet? When done, you can close this issue out.</p></div>
+        <br>
+    </body>
+</html>

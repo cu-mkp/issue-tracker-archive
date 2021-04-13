@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1085: model for entry category info in schema</title>
+</head>
+<body>
+    <h1>#1085: model for entry category info in schema</h1>
+    <h2>opened by tcatapano</h2>
+    <div><p>related to #819, integrating entry terms into the markup, I see at least 3 options:</p>
+<ol>
+<li>a category attribute with multiple values separated by pipes</li>
+</ol>
+<p><code>&lt;div id="p005r_1" category="casting|metal process|practical optics" &gt;</code></p>
+<ol>
+<li>a category1, category2 annd category3 attributes each with a single value</li>
+</ol>
+<p><code>&lt;div id="p005r_1" category1="casting" category2="metal process" category3="practical optics" &gt;</code> 3. repeatable empty &lt;category&gt; child elements with value attributes containing a single category term</p>
+<p>``` &lt;div id="p005r_1"&gt; &lt;category term="casting"/&gt; &lt;category term="metal process"/&gt; &lt;category term="practical optics"/&gt;</p>
+<p>```</p>
+<p>@NickLaiacona do you have any preferences?</p></div>
+    <br>
+            <h2>NickLaiacona commented:</h2>
+        <div><p>We're currently drawing the data from here:</p>
+<p>https://github.com/cu-mkp/m-k-manuscript-data/blob/master/metadata/entry_metadata.tsv</p>
+<p>Will your code add the categories to this csv?</p></div>
+        <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>Actually, the most up to date entry metadata table is here:</p>
+<p>https://github.com/cu-mkp/m-k-manuscript-data/blob/master/metadata/DCE_entry-category-metadata.csv</p>
+<p>The aim of this task is to add the category terms into the XML markup so that the transcriptions and translations contain this info rather than it be completely external. It can, but does not need to replace a lookup table for your purposes. If you think it would be too onerous for you to draw from the XML data rather than a table in building the entry list feature, we can continue to maintain a lookup table, in which case this issue is irrelevant for you.</p></div>
+        <br>
+    </body>
+</html>

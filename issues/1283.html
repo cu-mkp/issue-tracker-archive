@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1283: annotation metadata - create tracking columns for refresh</title>
+</head>
+<body>
+    <h1>#1283: annotation metadata - create tracking columns for refresh</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>(discussion in digital meeting, Performant Meeting 74_2019-11-14)</p>
+<p>As part of new pipeline for pulling down annotation data, add 3 new columns in annotation tracking and metadata: Add to annotations metadata - to indicate which to be pulled down</p>
+<ul>
+<li>Status column to designate staging vs production vs nothing
+<ul>
+<li>published = on production and staging</li>
+<li>staging = in staging only</li>
+<li>no = nowhere (don’t pull)</li>
+</ul></li>
+<li>Refresh column: yes/no (binary)</li>
+<li>Remove yes after each refresh and add to date column</li>
+<li>Timestamp for last refresh date: date</li>
+<li>Have limit to number of items to be refreshed (like 10-15)</li>
+</ul></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>@tcatapano and @NickLaiacona, this has now been implemented. Let me know if changes should be made</p></div>
+        <br>
+    </body>
+</html>

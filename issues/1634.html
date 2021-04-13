@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1634: annotation-metadata cite-as, update links</title>
+</head>
+<body>
+    <h1>#1634: annotation-metadata cite-as, update links</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>In “cite-as” - Add html to the link to make it a live link: <code>&lt;a href="your link here"&gt;you link here&lt;/a&gt;</code></p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>The following columns were added to the first sheet of annotation-metadata in order to automatically generate href formatting in "cite as" column, with an example entry:</p>
+<p><img src="https://user-images.githubusercontent.com/14779727/82221751-63aad580-98ee-11ea-97ba-1c1c51113bd2.png" alt="image" /></p>
+<h2>Columns are:</h2>
+<p>E = edition-URL AC = href-link AD = original-CHANGE-HERE-to-automatically-update-cite-as AE = remove-link AF = cite-as</p>
+<h2>Formulas used are as follows (using row 2 as example):</h2>
+<p><strong>AC = href-link</strong> <code>="&lt;a href="&amp;char(34)&amp;E2&amp;char(34)&amp;"&gt;"&amp;E2&amp;"&lt;/a&gt;"</code></p>
+<p><strong>AD = original-CHANGE-HERE-to-automatically-update-cite-as</strong> This was copied from what was in the "cite-as" column originally. @ps2270 - PLEASE NOTE THAT IF THERE ARE ANY CHANGES TO BE MADE TO A CITATION, THEY SHOULD BE MADE IN THIS COLUMN. fROM THIS COLUMN, THE "CITE-AS" COLUMN PULLS ALL INFO EXCEPT THE LINK</p>
+<p><strong>AE = remove-link</strong> <code>=LEFT(AD2,LEN(AD2)-64)</code> each essay URL is 64 characters long including the space preceding it, hence removing the last 64 characters.</p>
+<p><strong>AF = cite-as</strong> <code>=AE2&amp;AC2</code></p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>All citations have been updated with new link syntax</p></div>
+        <br>
+    </body>
+</html>

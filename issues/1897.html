@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1897: entries list not showing up in staging</title>
+</head>
+<body>
+    <h1>#1897: entries list not showing up in staging</h1>
+    <h2>opened by tcatapano</h2>
+    <div><p>Likely related to the structure/formatting of entry-metadata.csv</p>
+<p>https://edition-staging.makingandknowing.org/#/entries</p></div>
+    <br>
+            <h2>gschare commented:</h2>
+        <div><p>Yes, entry-metadata.csv is missing a ton of data on my end as well. I'm not sure what is causing this bug, but I'm presuming it has something to do with BeautifulSoup. The reason I say this is that I just finished work on an issue to switch from BeautifulSoup to lxml (cu-mkp/manuscript-object#33) and when I run update.py to check those results, I get the full correct output of entry_metadata.csv. After we merge that <a href="https://github.com/cu-mkp/manuscript-object/pull/35">pull request</a> and re-run update.py, it should be fine.</p>
+<p>I'm also seeing some strange line breaks in derivative files with this release, which also happens to be fixed by switching from BeautifulSoup to lxml. This is a very peculiar issue and I don't know exactly what is causing it, but I take full responsibility for the mistake; it definitely has to do with the changes I made in manuscript-object last Thursday.</p></div>
+        <br>
+            <h2>gschare commented:</h2>
+        <div><p>Ah, I found the exact problem. When BeautifulSoup parses the files in <code>ms-xml</code> and separates out the divs, I told it to "prettify()" the XML before returning it. This returns the exact same XML content, but with added line breaks between tags. This accounts for the weird-looking txt derivatives; what had happened is Recipe.py loads back up the XML with added line breaks and then removes all tags, leaving a bunch of awkwardly spaced out text. This would make sense for a DOM, but we are using XML more like HTML tags in a body of text, so it doesn't quite work.</p>
+<p>The reason entry-metadata.csv failed so spectacularly is that regex and line breaks are not friends. They are bitter enemies. With the added line breaks, pretty much every single heading got split up and as a result the regex to find headings returned empty strings.</p>
+<p>Now I can say with certainty why and how using lxml fixes the issue: lxml does not mess with the original line breaks when parsing XML and displaying it as text. To be extra careful, I am going to make sure to turn off pretty-printing. But on my local machine, running update.py with the changes from the <a href="https://github.com/cu-mkp/manuscript-object/pull/35">pull request</a> fixes the problem.</p></div>
+        <br>
+    </body>
+</html>

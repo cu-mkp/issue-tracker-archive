@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1027: identify and fix discrepancies in number of figures, links, and their ids</title>
+</head>
+<body>
+    <h1>#1027: identify and fix discrepancies in number of figures, links, and their ids</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>Related to #807</p>
+<p>Running the following xpath queries shows that number of figures, links, and fig-ids is the same across all versions. HOWEVER, the number of figures vs links vs ids is NOT the same.</p>
+<p>Identify where these problems are occurring:</p>
+<p>xpath query |   | number -- | -- | -- //figure | tc | 157 //figure | tcn | 157 //figure | tl | 157   |   |   //figure/id | tc | 155 //figure/id | tcn | 155 //figure/id | tl | 155   |   |   //link | tc | 156 //link | tcn | 156 //link | tl | 156</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Difference between figures and links occurs on 84v, where a figure has been entered with no id. It is actually a mark, so I am updating the markup: https://github.com/cu-mkp/m-k-manuscript-data/blob/eb8eaf589c161727b4b19e7f354e25c191248305/ms-xml/tc/tc<em>p084v</em>preTEI.xml#L128</p></div>
+        <br>
+    </body>
+</html>

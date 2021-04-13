@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1680: wellformedness error in all_tl.xml </title>
+</head>
+<body>
+    <h1>#1680: wellformedness error in all_tl.xml </h1>
+    <h2>opened by Pantagrueliste</h2>
+    <div><p>xmlstarlet gives this error: <code>all_tl.xml:21.1: Extra content at the end of the document &lt;div id="p001r_2" categories="lists"&gt;</code></p></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>This is likely caused by the lack of a root <code>&lt;all&gt;</code> element. See #1629</p>
+<p>See: https://github.com/cu-mkp/m-k-manuscript-data/issues/1629#issuecomment-632827185</p></div>
+        <br>
+    </body>
+</html>

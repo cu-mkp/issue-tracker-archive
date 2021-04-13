@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#12: Entries that exist as entries in Pw18 tracking but not marked up as such</title>
+</head>
+<body>
+    <h1>#12: Entries that exist as entries in Pw18 tracking but not marked up as such</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>p106v div IDs There are two entries on this page that 1) have been entered as distinct entries in PW18 tracking and 2) have distinct titles in PW18 ("Tuiles" and "Plastre"). However, these are not actually marked up as either being distinct DIVs with proper IDs or as having titles.</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>AMENDMENT: I understand what is happening - these are actually marked up as <code>&lt;rub&gt;</code>, which is described in our Markup Protocol as "Rubric: A word or phrase in italic script in the body of the text that is not a new div, heading, or or <code>&lt;ab&gt;</code>"</p>
+<p>This is this a larger conceptual question: for entry_metadata, do <code>&lt;rub&gt;</code>s get included? They are not as of the posting of this issue. Because editorial team has included them in PW18 tracking, should they receive unique IDs as an entry heading would?</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Another example is 108v, "Lardille" and "Alum de plume"</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Additional issue for schema, the inclusion of &lt;man&gt; Manchette: a word or phrase in the margin, usually in italic script, that indicates something in the text block. It is not a heading (although sometimes it looks like it), but rather explains something in the text block, e.g., within “Pierrerie,” there is a &lt;man&gt; in the margin that indicates where he mentions “Esmeraulde.”</p>
+<p>Included in PW18 tracking as a distinct entry, but no ID assigned</p></div>
+        <br>
+            <h2>tcatapano commented:</h2>
+        <div><p><code>&lt;rub&gt;</code> is not the proper element in a margin. It is intended essentially for inline headings; i.e., highlighted text that functions as a heading but is inline and does not really start a new text division/entry</p>
+<p>The (improperly named) "manchette" is a string of highlighted text, but in the margin, related to some content in an entry in the body text.</p>
+<p>Neither <code>&lt;rub&gt;</code> nor <code>&lt;man&gt;</code> should be in divs in the place of headings. This will be easy to test for via schematron in an xml aware environment.</p></div>
+        <br>
+            <h2>tcatapano commented:</h2>
+        <div><blockquote>
+<p>This is this a larger conceptual question: for entry_metadata, do <code>&lt;rub&gt;</code>s get included? They are not as of the posting of this issue. Because editorial team has included them in PW18 tracking, should they receive unique IDs as an entry heading would?</p>
+</blockquote>
+<p>If <code>&lt;rub&gt;</code>s are seen as {inline} headings for an entry, then they should be contained inside their own <code>&lt;div&gt;</code> in the place of the <code>&lt;head&gt;</code> usually used. If they are not seen as introducing a new entry, then they should not be in the entry metadata spreadsheet.</p></div>
+        <br>
+    </body>
+</html>

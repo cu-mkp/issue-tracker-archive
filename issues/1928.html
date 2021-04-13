@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1928: remove whitespace on 5v</title>
+</head>
+<body>
+    <h1>#1928: remove whitespace on 5v</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>While checking entry-metadata.csv, extra whitespace was found. Under p005r_2 (concave mirrors), <code>ms_tc</code> cell has the following values:</p>
+<blockquote>
+<p>pas;au bout de la  table;petit doigt;milieu de la foeille</p>
+</blockquote>
+<p>Note the extra spacing between "de" and "la," as well as between "la" and "foeille."</p>
+<p>I think this is because of linebreaks: https://github.com/cu-mkp/m-k-manuscript-data/blob/8a9bea6f4b2430b05240c0c18b7e3c00a87f4800/ms-xml/tc/tc<em>p005v</em>preTEI.xml#L37-40 <img src="https://user-images.githubusercontent.com/14779727/104019667-f0f6af00-5189-11eb-8c1c-ba2c5a921ea8.png" alt="image" /></p>
+<p>NOTE: this is not a problem for ms_tcn, which does not have these additional linebreaks:</p>
+<blockquote>
+<p>pas;au bout de la table;petit doigt;milieu de la foeille</p>
+</blockquote></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Confirmed that this has been fixed in https://github.com/cu-mkp/m-k-manuscript-data/pull/1931</p></div>
+        <br>
+    </body>
+</html>

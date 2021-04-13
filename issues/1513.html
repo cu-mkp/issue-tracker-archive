@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1513: issue1318</title>
+</head>
+<body>
+    <h1>#1513: issue1318</h1>
+    <h2>opened by Pantagrueliste</h2>
+    <div><p>For some reason, "right-middle" and "left-middle" attributes do not render consistently on page 123r. I changed two margin notes from "right-middle" it to "right-top." This should hopefully fix the bug.</p></div>
+    <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>@Pantagrueliste This is a known actual bug documented in Nick's repo that he will be working on. This is not the only folio for which this is a problem. Thus far, it has made no difference whether you give the margin blocks in question "right-top," "right-middle," or "right-bottom" designations—hence, it is a legit bug. So, can you please put the position attributes back to "right-middle," since that's the position marker it <em>should</em> have and that <em>should</em> work once Nick resolves the bug.</p>
+<p>See outstanding rendering problems not having to do with source data or values are: Extra wide: cu-mkp/making-knowing-edition#70 Right margins: cu-mkp/making-knowing-edition#173</p></div>
+        <br>
+            <h2>Pantagrueliste commented:</h2>
+        <div><p>Commit reverted. Thanks for the clarification.</p></div>
+        <br>
+    </body>
+</html>

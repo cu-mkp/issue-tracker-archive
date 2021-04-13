@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#529: 120v and &lt;rub&gt; &lt;man&gt; issues</title>
+</head>
+<body>
+    <h1>#529: 120v and &lt;rub&gt; &lt;man&gt; issues</h1>
+    <h2>opened by thuchacz</h2>
+    <div><p>After the main text of 120v_3, we get this: ``` &lt;rub&gt;See&lt;/rub&gt; the second leaf following.</p>
+<p>&lt;ab&gt;&lt;man&gt; &lt;margin&gt;left-middle&lt;/margin&gt;&lt;del&gt; Doubtful &lt;corr&gt;question&lt;/corr&gt;&lt;/del&gt;&lt;/man&gt;&lt;comment&gt;c<em>120v</em>07&lt;/comment&gt;&lt;/ab&gt; ``<code>The</code>&lt;man&gt;<code>block is rendering, but not in the margin, as its margin location tag should indicate. And the markup for</code>&lt;rub&gt;<code>leaves "the second leaf following" in no block beyond the overarching</code>&lt;div&gt;<code>, and neither the text between the</code>&lt;rub&gt;<code>tags nor the text following is rendering at all. Surely, this can't be how</code>&lt;rub&gt;` works. Or is it?</p></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>created issue https://github.com/cu-mkp/making-knowing-edition/issues/149 as this has to do with rendition, which is currently un/under-specified for man and rub. I have to take a deeper look to set create some rules for <code>&lt;man&gt;</code> and <code>&lt;rub&gt;</code> usage which can be validated</p></div>
+        <br>
+    </body>
+</html>

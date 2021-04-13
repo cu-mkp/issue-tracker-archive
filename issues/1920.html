@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1920: archive issue trackers</title>
+</head>
+<body>
+    <h1>#1920: archive issue trackers</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>using Github's API, archive all issues</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>simple recursive crawl of html: <code>wget -r -np -k https://github.com/cu-mkp/m-k-manuscript-data/issues/</code></p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Another tool for a similar strategy (just local harvest of site): http://www.httrack.com/</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>from @tcatapano - another idea: use json output from the github rest api to serve as input to Jekyll to generate a static site - for example, each issue json record is converted to md document with associated metadata in the yaml header - should each comment in an issue be part of the md issue page or be its own page and linked to? <code>¯\_(ツ)_/¯</code></p></div>
+        <br>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1710: 108v &quot;bottom justified&quot; margin: need to &quot;hack&quot; positioning</title>
+</head>
+<body>
+    <h1>#1710: 108v &quot;bottom justified&quot; margin: need to &quot;hack&quot; positioning</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>moved from https://github.com/cu-mkp/making-knowing-edition/issues/174</p>
+<p>There was an outstanding request to allow rendering of "bottom justified" text in the margin. However, decision has been made to use the current rendering allowances rather than develop new rendering features.</p>
+<p>Summarized below is the problem and the proposed solution.</p>
+<h2>Original problem</h2>
+<p>From @thuchacz: On 108v, the central text is a single <code>&lt;div&gt;</code> (which continues from the previous page) composed of three <code>&lt;ab&gt;</code> blocks, the last two of which begin with <code>&lt;rub&gt;</code> tagged text to indicate pseudo-headings. The marginal block is related to the second of the three <code>&lt;ab&gt;</code> blocks; however, the "left-middle" margin position markers for that marginal block make it render at the top of the grid section. Could we have a markup solution that allows a marginal block to be anchored to the bottom of a grid section rather than to its top?</p>
+<h2>Solution and way forward</h2>
+<p>From Nick: I don't have a good way to anchor the text to the bottom, but if you started a new div at "Alum de plume se doibt recuire" then it would look more like the facsimile. I think this is one of those cases where our content model and rendering model don't agree. (needs a hack to work)</p>
+<p><strong>DECISION:</strong> This is a markup problem. Need to work within the current rendering behavior to make it look more like the facsimile. Two options to do this: 1. (preferred) make "alum de plume" a new div - with a part attribute (which was likely not part of the schema at the time of this issue) - and anchor the marginal block to this div 2. add a number of white spaces (such as <strong>lb or br</strong> or something else) to push the marginal block down. To be done by @thuchacz and @tcatapano</p></div>
+    <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>Done.</p></div>
+        <br>
+    </body>
+</html>

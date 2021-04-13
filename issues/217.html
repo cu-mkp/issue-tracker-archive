@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#217: Use of `&lt;corr&gt;` tags and action item</title>
+</head>
+<body>
+    <h1>#217: Use of `&lt;corr&gt;` tags and action item</h1>
+    <h2>opened by ps2270</h2>
+    <div><p><code>&lt;corr&gt;</code> tags were used for in the following ways: In the TC and TCN 1. For expanded abbreviations in tc and tcn, we used <code>&lt;exp&gt;</code> element; E.g., subtillem<code>&lt;exp&gt;</code>ent<code>&lt;/exp&gt;</code> In cases where M&amp;K has corrected where the author has forgotten the abbreviation is indicated by <code>&lt;corr&gt;&lt;exp&gt;text&lt;/exp&gt;&lt;/corr&gt;</code> Be sure to use &lt;exp&gt; element within <code>&lt;corr&gt;</code> tags, both in tc and tcn : WE ARE HAPPY WITH THE RENDERING OF THESE INSTANCES</p>
+<ol>
+<li>In the TCN and TL ONLY -For editorial corrections in tcn (places where the M&amp;K team member is correcting a mistake on the part of the original writer), use <code>&lt;corr&gt;</code>; E.g., Garrant in the ms becomes: Garan<code>&lt;corr&gt;ce&lt;/corr&gt;</code> -For corresponding corrections in the English Translations, the <code>&lt;corr&gt;</code> tag encloses the entire word, even if it is only a part of the word that has been corrected. WE ARE HAPPY WITH THE RENDERING OF THESE INSTANCES</li>
+</ol>
+<p>This second instance includes where <code>&lt;corr&gt; is used with the &lt;del&gt;</code> tag to show that the M&amp;K team believes the a-p forgot to delete a word. In this last instance, THE RENDERING IS DIFFICULT, therefore the decision is hereby to have an editorial note that says something like "a-p likely forgot to delete this word". So, we'd need to change these <code>&lt;corr&gt; tags to &lt;comment&gt;</code> tags. There seem to be 53 instances of this in the tcn and fewer in the tl.</p></div>
+    <br>
+            <h2>TillmannTaape commented:</h2>
+        <div><p>All <code>&lt;corr&gt;&lt;del&gt;</code> tags removed from TC; see #215</p></div>
+        <br>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1011: run validation with schema and correct errors</title>
+</head>
+<body>
+    <h1>#1011: run validation with schema and correct errors</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>with new schema that allows for optional id of div (see #999, #1000), re-run validation. Identify errors and correct</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Outstanding issues listed below. All have deal with a figure within a div.</p>
+<p>File | Location -- | -- C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tc\tc<em>p006v</em>preTEI.xml | Start line 62:2End line 62:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tc\tc<em>p016r</em>preTEI.xml | Start line 59:2End line 59:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tc\tc<em>p033r</em>preTEI.xml | Start line 121:2End line 121:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tcn\tcn<em>p006v</em>preTEI.xml | Start line 61:2End line 61:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tcn\tcn<em>p016r</em>preTEI.xml | Start line 59:2End line 59:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tcn\tcn<em>p033r</em>preTEI.xml | Start line 117:2End line 117:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tl\tl<em>p006v</em>preTEI.xml | Start line 32:2End line 32:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tl\tl<em>p016r</em>preTEI.xml | Start line 35:2End line 35:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tl\tl<em>p033r</em>preTEI.xml | Start line 68:2End line 68:2</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>@tcatapano and @thuchacz - I have fixed all errors except one:</p>
+<p>File | Location -- | -- C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tc\tc<em>p033r</em>preTEI.xml | Start line 121:2End line 121:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tcn\tcn<em>p033r</em>preTEI.xml | Start line 117:2End line 117:2 C:\Users\naomi\Github\m-k-manuscript-data\ms-xml\tl\tl<em>p033r</em>preTEI.xml | Start line 68:2End line 68:2</p>
+<p>This is: <code>&lt;div&gt; &lt;id&gt;&lt;/id&gt;</code> <code>&lt;fig&gt; [associated fig tags] &lt;/fig&gt;</code> <code>&lt;head&gt;&lt;/head&gt;</code> <code>&lt;fig&gt; [associated fig tags] &lt;/fig&gt;</code> Which I believe is throwing an error because the div opens with a figure. I have two questions here: 1. can you look at the markup and see a way around this schema error? 2. are these two figs even figs? I'm not so convinced. Perhaps need to consult the team. If they aren't figs, we may be able to fix the errors by tagging more appropriately (e.g., marks?)</p></div>
+        <br>
+    </body>
+</html>

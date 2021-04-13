@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#687: pastel — translation and markup inconsistencies</title>
+</head>
+<body>
+    <h1>#687: pastel — translation and markup inconsistencies</h1>
+    <h2>opened by thuchacz</h2>
+    <div><p>If you'll recall, this whole conundrum grew out of an infelicity:<br />
+FR "pastel" = EN "woad" FR "guesde" = EN "woad"</p>
+<p>On 15r, the AP distinguishes "pastel" and "guesde" (or uses them synonymously? We thought not...) We decided that we would also distinguish these terms, using "pastel woad" and "guesde woad." <em>For what it's worth, "pastel" is much more common in the MS. "guesde" is only used once on 15r; "guesdre" used once on 76r. Also, NB: "pastel" is both a modifier (e.g., "fleurs de pastel" / "pastel flowers") and modified (e.g., "pastel pur d'escarlate" / "pure scarlet pastel")</em></p>
+<p><strong>PROBLEM:</strong> Tag complications relating to <code>&lt;fr&gt;</code> and <code>&lt;pa&gt;</code> tags and their placement.</p>
+<p><code>&lt;fr&gt;</code> issues: - Some of the "pastel" have been put in <code>&lt;fr&gt;</code> tags in the TL, though most have not - "guesde" and "guesdre" have not been put in <code>&lt;fr&gt;</code> tags <strong>QUESTION: does "pastel" and/or "guede" need <code>&lt;fr&gt;</code> tags?</strong></p>
+<p><code>&lt;pa&gt;</code> issues: - sometimes we get <code>&lt;pa&gt;pastel&lt;/pa&gt; woad</code> - sometimes we get <code>&lt;pa&gt;pastel woad&lt;/pa&gt;</code> <strong>QUESTION: what should be the extent of the <code>&lt;pa&gt;</code> tags?</strong></p></div>
+    <br>
+            <h2>ps2270 commented:</h2>
+        <div><p>Do not use French tags for pastel; it is an English word. Guesde and guede are French, so I guess it should have French tags. <code>&lt;pa&gt;</code> tags should be around both terms in pastel woad and guesde woad.</p></div>
+        <br>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#121: Remove all fig tags from symbols like &quot;dram&quot; with unicode characters</title>
+</head>
+<body>
+    <h1>#121: Remove all fig tags from symbols like &quot;dram&quot; with unicode characters</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>DECISION: unicode symbols do not need to be marked up as figures. Remove from any existing cases (thumbnail picture doesn’t have to go in)</p>
+<p>There had been a question about whether unicode characters should be marked as figures, such as the symbol for oz and dram. Markup teams continued to do this, but want to discuss this and make a decision. [It doesn’t make sense for them to be figures, some of us think]</p>
+<p>See also issues #55 "normalization/word association..." and #43 "symbols and/or marks..."</p></div>
+    <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>In oXygen, removed mark/figure tags around the identified unicode characters, using Find <code>&lt;mark&gt;(ʒ)&lt;/mark&gt;</code> Replace \1 With selection: regular expression</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>Terms replaced, branch name used: ʒ issue121 ℥ issue121-2 ☉ issue121-3 ☼ issue121-4 ☿ issue121-5 ☾ issue121-6 🝋 issue121-7</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>♁ found only on 52v, and not tagged as mark or figure</p></div>
+        <br>
+            <h2>njr2128 commented:</h2>
+        <div><p>symbol, branch name: ♀ plus badly tagged ones, issue121-8 on 8v_5 many mark tags outside of material tags, which did not get pulled in previous search and replace campaigns of removal</p>
+<p>Should check all alchemical etc. symbol occurrences without "mark" tags in the search line to ensure all instances were in fact removed. To be done in issue #165</p></div>
+        <br>
+    </body>
+</html>

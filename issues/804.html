@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#804: what to do about &lt;corr&gt; tags in TCN—do we carry over to TL?</title>
+</head>
+<body>
+    <h1>#804: what to do about &lt;corr&gt; tags in TCN—do we carry over to TL?</h1>
+    <h2>opened by thuchacz</h2>
+    <div><p>Needs an explicit decision.</p></div>
+    <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>Explicit decision made on Oct. 2, 2019: &lt;corr&gt; will not be pulled over to the TL.</p></div>
+        <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>For reference, discussion recorded here:</p>
+<p><strong>SUMMARY OF PROBLEM:</strong> <em>Background</em> We are being careful to ensure that markup (structural and semantic) is identical across all three versions of the manuscript. There are but few exceptions (notably, expansions of abbreviations are not carried into the TL, and there are no <code>&lt;corr&gt;</code> tags in the TC, etc.). At times, we have chosen a less-intuitive word order in the TL to facilitate this markup matching. <em>Current issue</em> <code>&lt;corr&gt;</code> tags mark out our editorial interventions to correct—for the TCN and TL—errors that appear in the TC. These include errors of gender and number, spelling, and missing expansion marks, to name a few. While these errors are easy to correct and mark with <code>&lt;corr&gt;</code> tags in the TCN, there has long been discussion about whether it makes sense to signal them in the TL, especially when <code>&lt;corr&gt;</code> tags cannot function for translated English words as they might have for original French ones. As a result, the <code>&lt;corr&gt;</code> tags were applied inconsistently in the TL, with no rule governing when they were used and how. The table THC and NJR pulled, which compares tag counts for each folio across TC, TCN, and TL, makes the discrepancy very apparent. As of last Friday, there were 0 <code>&lt;corr&gt;</code> tags in TC, 276 in TCN, and 133 in TL. dThis leaves us with a sloppy data set and no way of articulating what was done, when, and why.</p>
+<p><strong>SOLUTION:</strong> THU has gone through the first 60 <code>&lt;corr&gt;</code> tags which appear in the TCN and has: - made sure there is a corresponding <code>&lt;corr&gt;</code> tag in the TL, however absurd - compiled a table of these first 60 instances - grouped corrections by type</p>
+<p><strong>NEXT STEPS</strong> - Team to give input / sign off on proposed solutions by correction type - THU to implement approved solutions for these first 60 and going forward for the next 216. From this point onward, THU will only add examples of new correction types to the table, so that we can end with a list of problem types and solutions to help us articulate the principle implemented with <code>&lt;corr&gt;</code> tags in TL.</p>
+<p>Please see "Sheet 2" of the "<code>&lt;corr&gt;</code> tags" table in the GD, which is sorted by type. There are 5 categories that are most problematic, but I have offered somewhat principled solutions for all (see the yellow column, and feel free to comment in columns to the right)</p>
+<ol>
+<li>additions to the ends of a word place <code>&lt;corr&gt;</code> tags around the relevant letters (even if TL letters not identical to TCN letters) at the appropriate end of the word</li>
+<li>additions to the middle of a word place <code>&lt;corr&gt;</code> tags around appropriate letter(s) in the middle of the TL word</li>
+<li>additions of expansion brackets when the AP forgot his exp symbol place <code>&lt;corr&gt;</code> tags around the corresponding part of the TL word that is expanded —THU: so far, this has only been suffixes, so it's actually a no-brainer</li>
+<li>deletions at the ends of a word place <code>&lt;corr&gt;&lt;del&gt;</code> combo around appropriate end letter(s) of corresponding TL word —THU: this is the least satisfying category, but there are comparatively few instances</li>
+<li>substitutions of parts of a word place <code>&lt;corr&gt;</code> tags around the appropriate letter(s) in the corresponding TL word —THU: this is case-by-case, but not bad My somewhat surprising conclusion: The overarching principle governing my <code>&lt;corr&gt;</code> tag work seems to be that I am trying to flag in square brackets the parts of a TL word that correspond to those parts corrected in the same word in the TCN. Sometimes this flagging is by visual position (beginning, middle, end of a word) or "part" of word (prefix, suffix, verb ending).</li>
+</ol></div>
+        <br>
+            <h2>thuchacz commented:</h2>
+        <div><p>CAG wrote: Tianna’s work is commendable, but makes little philological sense to me. There are limits to how transparent our translation can be, and we should probably accept that the markup in TL cannot perfectly mimic the one in TCN. Readers have access to no less than four versions of the manuscript, anyway, and they can easily explore and discover the entire editorial process, including these corrections; so is this information indispensable to TL?</p>
+<p>I’m asking this because there’s a major risk that by using these square brackets, TL will be distracting the reader with misleading information. Moreover, many of these corrections are rather “uneventful,” they don’t radically change the meaning of a passage, and they rarely resolve ambiguities, so why should we signal all of these changes in TL? “deouf" clearly is “d’oeuf:" it can't be anything else. Signalling unimportant changes like this one is a source of distraction.</p>
+<p>Translation necessarily entails interpretation, and unless our interpretation of a <em>word</em> doesn't favour the meaning of the word’s <em>sentence</em> over another possible and plausible meaning, I don’t see why we should signal it in TL. I mention this because I'm also afraid that this could send the wrong message to expert readers, especially those with a background in philology, since it may betray very debatable assumptions about the way we theorize translation and edition. Indeed, if we think that the orthographic and grammatical errors/corrections can be translated consistently from one language to another, then we are probably pushing literalism to controversial extremes.</p></div>
+        <br>
+    </body>
+</html>

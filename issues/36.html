@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#36: Translation tag for translating from other languages than French into English</title>
+</head>
+<body>
+    <h1>#36: Translation tag for translating from other languages than French into English</h1>
+    <h2>opened by ps2270</h2>
+    <div><p>Our tentative solution is to make a comment at this point (make this in GD ms pages, with an anchor, and in spreadsheet) with the word or phrase and a note saying that original is in the other language. But, @tcatapano is there a better solution? an example is 55r.</p></div>
+    <br>
+            <h2>tcatapano commented:</h2>
+        <div><p>A sequence of <code>&lt;trans&gt;/&lt;orig&gt;</code> might be a solution too. E.g.,</p>
+<p>``` &lt;head&gt;For shooting a &lt;trans&gt;&lt;orig&gt;&lt;it&gt;schioppo senza rumore&lt;/it&gt;&lt;orig&gt;gun without noise&lt;/trans&gt;&lt;/head&gt;</p>
+<p>```</p>
+<p>This would require some specific logic to handle the rendition properly that might be more complicated than relying on the general comment/note functionality to get the same effect.</p></div>
+        <br>
+            <h2>ps2270 commented:</h2>
+        <div><p>Yeah. Let me run the comment idea by the rest of the team, and see what they think.</p></div>
+        <br>
+    </body>
+</html>

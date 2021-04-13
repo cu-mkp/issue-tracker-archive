@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/issue-tracker-archive/assets/style.css">
+    <title>#1909: entry-metadata tagged texts incorrect</title>
+</head>
+<body>
+    <h1>#1909: entry-metadata tagged texts incorrect</h1>
+    <h2>opened by njr2128</h2>
+    <div><p>As of the most recent (that we can tell) generation of entry-metadata, the entries for tagged terms contain text that is outside of the tagged term in xml: e.g., https://github.com/cu-mkp/m-k-manuscript-data/blob/4625a7ad236f37bca47f4bdc27fcd536e89bcbb0/ms-xml/tl/tl<em>p003r</em>preTEI.xml#L19-L20</p>
+<p>--&gt; returns the phrases (see cell Y12 of csv) 1. <code>subtly ground vermilion with</code> and 2. <code>&lt;m&gt;&lt;pa&gt;walnut&lt;/pa&gt; oil&lt;/m&gt;, and if you add in a little</code> (even though it catches nested tags, it then similarly adds the untagged text after the closed material tag)</p></div>
+    <br>
+    </body>
+</html>
