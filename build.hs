@@ -182,7 +182,7 @@ main = do
     createDirectory targetDir
     createDirectory $ targetDir </> "issues"
 
-    writeFile ".nojekyll" "" -- Tell GitHub not to build with Jekyll
+    writeFile (targetDir </> ".nojekyll") "" -- Tell GitHub not to build with Jekyll
     copyAssets
     copyIndex
 
