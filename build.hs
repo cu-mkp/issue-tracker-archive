@@ -47,7 +47,7 @@ instance J.FromJSON Issue where
       issueAuthor  <- userObj J..: "login"
       rawIssueBody <- obj J..: "body"
       let issueBody = either (const Nothing) Just (mdToHtml . fromMaybe "" $ rawIssueBody)
-      return (Issue issueNumber issueId issueUrl issueTitle issueAuthor issueBody)
+      return (Issue issueNumber issueId issueUrl (escapeHtml issueTitle) (escapeHtml issueAuthor) issueBody)
 
 instance J.ToJSON Issue where
   toJSON (Issue issueNumber _ issueUrl issueTitle issueAuthor issueBody) =
@@ -67,7 +67,7 @@ instance J.FromJSON Comment where
       commentAuthor    <- userObj J..: "login"
       rawCommentBody   <- obj J..: "body"
       let commentBody = either (const Nothing) Just (mdToHtml . fromMaybe "" $ rawCommentBody)
-      return (Comment commentId commentUrl commentIssueUrl commentAuthor commentBody)
+      return (Comment commentId commentUrl commentIssueUrl (escapeHtml commentAuthor) commentBody)
 
 instance J.ToJSON Comment where
   toJSON (Comment _ commentUrl commentIssueUrl commentAuthor commentBody) =
@@ -131,8 +131,17 @@ issueTemplateIO = loadTemplate $ templatesDir </> "issue.html"
 issuesIndexTemplateIO :: IO (PT.Template T.Text)
 issuesIndexTemplateIO = loadTemplate $ templatesDir </> "issuesIndex.html"
 
+escapeHtml :: T.Text -> T.Text
+escapeHtml = T.concatMap sanitize where
+  sanitize '&' = "&amp;"
+  sanitize '<' = "&lt;"
+  sanitize '>' = "&gt;"
+  sanitize '"' = "&quot;"
+  sanitize '\'' = "&#39;"
+  sanitize other = T.singleton other
+
 mdToHtml :: T.Text -> Either P.PandocError T.Text
-mdToHtml md =P.runPure $ do
+mdToHtml md = P.runPure $ do
     doc <- P.readMarkdown P.def md
     P.writeHtml5String P.def doc
 
@@ -152,6 +161,7 @@ makeIssuePage context = do
     let page = render Nothing $ PT.renderTemplate template context
     return page
 
+-- TODO: sort this list
 makeIssuesIndexPage :: [Issue] -> IO (T.Text)
 makeIssuesIndexPage issues = do
     template <- issuesIndexTemplateIO
