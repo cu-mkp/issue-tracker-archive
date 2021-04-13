@@ -3,7 +3,7 @@
 import qualified Text.Pandoc as P
 import qualified Text.Pandoc.Templates as PT
 import Text.DocLayout (render) -- Used to render Doc type into Text type.
---import System.IO
+import System.IO (writeFile)
 import System.Directory (createDirectory, removeDirectoryRecursive, getDirectoryContents, doesDirectoryExist, copyFile)
 import System.FilePath ((</>))
 import Control.Monad (forM_)
@@ -182,6 +182,7 @@ main = do
     createDirectory targetDir
     createDirectory $ targetDir </> "issues"
 
+    writeFile ".nojekyll" "" -- Tell GitHub not to build with Jekyll
     copyAssets
     copyIndex
 
